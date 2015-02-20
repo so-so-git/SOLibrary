@@ -1,0 +1,315 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="SO.Library.Collections.CirculateList&lt;T&gt;" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="13.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEIAAEAAAAEAABAQCAAAJAQAAAAAAgAECCgAAABQIAA=</HashCode>
+      <FileName>Collections\CirculateList.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="SO.Library.Components.ExComboBox" Collapsed="true">
+    <Position X="13.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAEAAAAAAAmAAAAAAAAAAIIAAEAAAAIAEAAAAA=</HashCode>
+      <FileName>Components\ExComboBox.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SO.Library.Components.ExDateTimePicker" Collapsed="true">
+    <Position X="15" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAEAAAAAAAmAAAAAAAAAAIIAAEAAAAIAEAAAAA=</HashCode>
+      <FileName>Components\ExDateTimePicker.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SO.Library.Components.ExMaskedTextBox" Collapsed="true">
+    <Position X="16.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAAAAAmAAAAAAAAAAAIAAAAAAAIAEAAAAA=</HashCode>
+      <FileName>Components\ExMaskedTextBox.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SO.Library.Components.ExTextBox" Collapsed="true">
+    <Position X="8" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAAAAAmAAAAAAAAAAAIAAAAAAAIAEAAAAA=</HashCode>
+      <FileName>Components\ExTextBox.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SO.Library.Data.Extensions.DbExtensions" Collapsed="true">
+    <Position X="8" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAAAAAQAACAAAAAAAAAAAAAAAABAAAAAAA=</HashCode>
+      <FileName>Data\Extensions\DbExtensions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SO.Library.Data.SqlAccessor" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="16.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAEIEABACAAJCACABAAAFCAAAAAAAAAQAAAFACEAAA=</HashCode>
+      <FileName>Data\SqlAccessor.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="SO.Library.Drawing.Barcode.BarcodeFormatInfo" Collapsed="true">
+    <Position X="9.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAAAAAABAAAAAAACAAAAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>Drawing\Barcode\BarcodeFormatInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SO.Library.Drawing.Barcode.BarcodeReader2of5" Collapsed="true">
+    <Position X="1.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAABAAAAEAAAAAAAAoAECAAIAAASEICAAAAAAAAg=</HashCode>
+      <FileName>Drawing\Barcode\BarcodeReader2of5.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SO.Library.Drawing.Barcode.IndustrialBarcodeReader" Collapsed="true">
+    <Position X="0.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAABAAAAAAAAAAAAAAAACAAAAAAQAIAAAAAAAAAA=</HashCode>
+      <FileName>Drawing\Barcode\IndustrialBarcodeReader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SO.Library.Drawing.Barcode.InterleavedBarcodeReader" Collapsed="true">
+    <Position X="2.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAQBAAAAAAQAAAACAAAACAAAAAAQAIAAAAAKAAAA=</HashCode>
+      <FileName>Drawing\Barcode\InterleavedBarcodeReader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SO.Library.Drawing.ImageUtilities" Collapsed="true">
+    <Position X="15" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAgAAAAAgAAAAACAAEAAAAAAAAAAAAAwAAABAAA=</HashCode>
+      <FileName>Drawing\ImageUtilities.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SO.Library.Drawing.MonoThrethould" Collapsed="true">
+    <Position X="9.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAAAAAAAACAgAAAAAACAgAAAAAAAAgAAAEAAA=</HashCode>
+      <FileName>Drawing\MonoThrethould.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SO.Library.Extensions.ExceptionExtensions" Collapsed="true">
+    <Position X="11.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Extensions\ExceptionExtensions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SO.Library.Extensions.MiscExtensions" Collapsed="true">
+    <Position X="8" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAAAgAAAAAAAAAAAAAAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>Extensions\MiscExtensions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SO.Library.Extensions.StringExtentions" Collapsed="true">
+    <Position X="8" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAA=</HashCode>
+      <FileName>Extensions\StringExtentions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SO.Library.Forms.CircleProgressDialog" Collapsed="true">
+    <Position X="11.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAACAAQAFAAIGgAAACABIQAAAABAAQARAAAAA=</HashCode>
+      <FileName>Forms\CircleProgressDialog.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SO.Library.Forms.CommonInputDialog" Collapsed="true">
+    <Position X="15" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAiAAIAAACQAAAEAAACAAAACAQAEhAAAAQAAAAAAAAA=</HashCode>
+      <FileName>Forms\CommonInputDialog.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SO.Library.Forms.FormUtilities" Collapsed="true">
+    <Position X="11.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAgEABAAAAAAAAAAAIAAAAACAgAAAAAAAAAAAAA=</HashCode>
+      <FileName>Forms\FormUtilities.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SO.Library.Forms.ProgressDialog" Collapsed="true">
+    <Position X="13.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAIAAAAAACRAAEAAAAKAAAACAIAAAFAABAAAoAAQAAA=</HashCode>
+      <FileName>Forms\ProgressDialog.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SO.Library.Forms.SimpleEditorForm" Collapsed="true">
+    <Position X="15" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAFAACAAAACAAACAAAACAEAAUBBAQIBAAAJAAAA=</HashCode>
+      <FileName>Forms\SimpleEditorForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SO.Library.Forms.Extensions.FormExtensions" Collapsed="true">
+    <Position X="9.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Forms\Extensions\FormExtensions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SO.Library.IO.Cryptgrapher" Collapsed="true">
+    <Position X="16.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAAAAAEQAAAAAAAAAAAAAQAAAAAAAAAAAAA=</HashCode>
+      <FileName>IO\Cryptgrapher.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SO.Library.IO.CsvFileHelper" Collapsed="true">
+    <Position X="2.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AwEAAAAARAAIMAACAAAAAgABAAAAAAAAAAIQAACAAAA=</HashCode>
+      <FileName>IO\CsvFileHelper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SO.Library.IO.FileHelper&lt;T&gt;" Collapsed="true">
+    <Position X="1.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QgAABAAAACAAKABACAAAABAAABAAEAAAAABAAAGAAAA=</HashCode>
+      <FileName>IO\FileHelper.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SO.Library.IO.FileItem" Collapsed="true">
+    <Position X="5.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAVAAAAAAAAAAAAgAAAAAgA=</HashCode>
+      <FileName>IO\FileItem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SO.Library.IO.FixedLengthFileHelper" Collapsed="true">
+    <Position X="0.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgEAAAAAAAAAKAIACAAEAAAAAAAAAABgAQAAAACAAAA=</HashCode>
+      <FileName>IO\FixedLengthFileHelper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SO.Library.IO.FixedLengthFileItem" Collapsed="true">
+    <Position X="5.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEBAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>IO\FixedLengthFileItem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SO.Library.IO.HtmlLogger" Collapsed="true">
+    <Position X="5.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QABAAAAAAAgAQAAACEAAAAgAAAABAAIAAAAAAAAAAAA=</HashCode>
+      <FileName>IO\HtmlLogger.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SO.Library.IO.Logger" Collapsed="true">
+    <Position X="5.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAIAAAAAAAQQAAAGAAAAgAACCAEAAAAAAgAAAAAAA=</HashCode>
+      <FileName>IO\Logger.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SO.Library.IO.MessageXml" Collapsed="true">
+    <Position X="16.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAIAAAAEAAAAAAACAAIAAAAAAAAIAAgAACAA=</HashCode>
+      <FileName>IO\MessageXml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SO.Library.IO.XmlManager" Collapsed="true">
+    <Position X="11.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAACBAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IO\XmlManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SO.Library.Net.AdapterInfo" Collapsed="true">
+    <Position X="8" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAaAACIAAAAHABAASAAIQAAgAAAAAAAAABAIAAQAA=</HashCode>
+      <FileName>Net\AdapterInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SO.Library.Net.DownloadManager" Collapsed="true">
+    <Position X="9.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAgAAAAAAAAAAiAAAAAAACAEAAAAAAAAQgQAAAA=</HashCode>
+      <FileName>Net\DownloadManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SO.Library.Net.FtpController" Collapsed="true">
+    <Position X="13.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAQAAAgEACgAAAAAAAAAAAAAEAAEAUAQAAAACA=</HashCode>
+      <FileName>Net\FtpController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SO.Library.Net.NetworkUtilities" Collapsed="true">
+    <Position X="11.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABQAQAABEAEAAAAgAAAAAAAAAAJAAAAgAAQQAAA=</HashCode>
+      <FileName>Net\NetworkUtilities.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SO.Library.Text.StringUtilities" Collapsed="true">
+    <Position X="9.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAwAAAAAAAQAUCgkAQAAAAAgACAAAAAAQAAAAA=</HashCode>
+      <FileName>Text\StringUtilities.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="SO.Library.IO.MessageInfo" Collapsed="true">
+    <Position X="8" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAQAAAAgAAiA=</HashCode>
+      <FileName>IO\MessageXml.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="SO.Library.Net.NetshExitCodes" Collapsed="true">
+    <Position X="9.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAAAAgAAAAAAAAAAAAAAAAAABAAgAAABAA=</HashCode>
+      <FileName>Net\NetworkUtilities.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Enum Name="SO.Library.Drawing.GrayScaleMethod" Collapsed="true">
+    <Position X="13.25" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAiAAAA=</HashCode>
+      <FileName>Drawing\ImageUtilities.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="SO.Library.IO.CsvTsvFileKind" Collapsed="true">
+    <Position X="8" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEIA=</HashCode>
+      <FileName>IO\CsvFileHelper.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="SO.Library.IO.FileItemType" Collapsed="true">
+    <Position X="11.5" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAAAAAAAAAAAAAgQBAAAACAAAASA=</HashCode>
+      <FileName>IO\FileHelper.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="SO.Library.IO.FileFetchStatus" Collapsed="true">
+    <Position X="9.75" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAIAAAAAAAAAAAAAAAAIAAAAAgAAAAAAAAA=</HashCode>
+      <FileName>IO\FileHelper.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="SO.Library.Text.PaddingOption" Collapsed="true">
+    <Position X="15" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAQAA=</HashCode>
+      <FileName>Text\StringUtilities.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="MS UI Gothic" Size="9" />
+</ClassDiagram>
