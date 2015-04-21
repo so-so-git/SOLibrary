@@ -11,6 +11,7 @@ namespace SO.Library.Extensions
     public static class MiscExtensions
     {
         #region ToValue - 列挙値を列挙体の基となる型のインスタンスに変換(Enum拡張)
+
         /// <summary>
         /// (System.Enumクラス拡張)
         /// 列挙値を、所属する列挙体の基となる型のインスタンスに変換します。
@@ -23,6 +24,7 @@ namespace SO.Library.Extensions
         {
             return (T)Enum.Parse(source.GetType(), source.ToString());
         }
+
         #endregion
 
         #region StartWithHiding - シェル画面を表示せずプロセス開始(Process拡張)
@@ -60,6 +62,24 @@ namespace SO.Library.Extensions
 
             return address;
         }
+        #endregion
+
+        #region ToSafeString - Nullセーフな文字列変換(Object拡張)
+
+        /// <summary>
+        /// 対象がNullまたはSystem.DBNullの場合はString.Emptyを返します。
+        /// それ以外の場合は対象のToString()の結果を返します。
+        /// </summary>
+        /// <param name="obj">変換対象のオブジェクト</param>
+        /// <returns>変換結果の文字列</returns>
+        public static string ToSafeString(this object obj)
+        {
+            if (obj == null || Convert.IsDBNull(obj))
+                return string.Empty;
+
+            return obj.ToString();
+        }
+
         #endregion
     }
 }
