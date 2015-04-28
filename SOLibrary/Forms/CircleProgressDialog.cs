@@ -174,8 +174,8 @@ namespace SO.Library.Forms
         /// フォームリサイズ時の処理です。
         /// 変更後のサイズに応じて、各パラメータを再設定します。
         /// </summary>
-        /// <param orderName="sender">イベント発生元オブジェクト</param>
-        /// <param orderName="e">イベント引数</param>
+        /// <param name="sender">イベント発生元オブジェクト</param>
+        /// <param name="e">イベント引数</param>
         private void CircleProgressDialog_Resize(object sender, EventArgs e)
         {
             try

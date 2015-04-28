@@ -109,6 +109,7 @@ namespace SO.Library.IO
         #endregion
 
         #region GetFileMD5 - ファイルのMD5ハッシュを取得
+
         /// <summary>
         /// 指定されたパスのファイルのMD5ハッシュを取得します。
         /// </summary>
@@ -136,6 +137,27 @@ namespace SO.Library.IO
         {
             return GetFileMD5(file.FullName);
         }
+
+        #endregion
+
+        #region GetBytesMD5 - バイトデータのMD5ハッシュを取得
+
+        /// <summary>
+        /// 指定されたバイトデータのMD5ハッシュを取得します。
+        /// </summary>
+        /// <param name="data">対象のバイトデータ</param>
+        /// <returns>データのMD5ハッシュ</returns>
+        public static string GetBytesMD5(byte[] data)
+        {
+            MD5 md5 = MD5.Create();
+            StringBuilder sb = new StringBuilder();
+
+            Array.ForEach(md5.ComputeHash(data),
+                b => sb.Append(b.ToString("x2")));
+
+            return sb.ToString();
+        }
+
         #endregion
     }
 }
