@@ -9,7 +9,6 @@ namespace SO.Library.Forms
     /// <summary>
     /// 簡易エディタフォームクラス
     /// </summary>
-    /// <seealso cref="System.Windows.Forms.Form"/>
     public partial class SimpleEditorForm : Form
     {
         #region クラス定数
@@ -35,12 +34,12 @@ namespace SO.Library.Forms
         }
 
         /// <summary>
-        /// 編集対象ファイルの文字コードを取得・設定します。
+        /// 編集対象ファイルの文字コードを取得または設定します。
         /// </summary>
         public Encoding FileEncoding { get; set; }
 
         /// <summary>
-        /// 上書き保存時に確認を行うかどうかを取得・設定します。
+        /// 上書き保存時に確認を行うかどうかを取得または設定します。
         /// 規定値はfalseです。
         /// </summary>
         public bool SaveConfirm { get; set; }
@@ -53,6 +52,7 @@ namespace SO.Library.Forms
         #endregion
 
         #region コンストラクタ
+
         /// <summary>
         /// 規定のコンストラクタです。
         /// </summary>
@@ -66,11 +66,13 @@ namespace SO.Library.Forms
             SaveConfirm = false;
             Updated = false;
         }
+
         #endregion
 
         #region イベントハンドラ
 
         #region SimpleEditorForm_Shown - フォーム表示時処理
+
         /// <summary>
         /// フォーム表示時の処理です。
         /// 編集対象ファイルの内容をテキストエリアに表示します。
@@ -90,9 +92,11 @@ namespace SO.Library.Forms
             txtEditor.Select(txtEditor.Text.Length, 0);
             Text = FileName;
         }
+
         #endregion
 
         #region SimpleEditorForm_KeyDown - フォーム上でのキー押下時処理
+
         /// <summary>
         /// フォーム上でのキー押下時の処理です。
         /// 押下されたショートカットキーに応じた処理を行います。
@@ -129,9 +133,11 @@ namespace SO.Library.Forms
                 }
             }
         }
+
         #endregion
 
         #region SimpleEditorForm_FormClosing - フォームクローズ前処理
+
         /// <summary>
         /// フォームクローズ前の処理です。
         /// ファイルが編集中の場合、フォームを閉じて良いか確認します。
@@ -141,13 +147,16 @@ namespace SO.Library.Forms
         private void SimpleEditorForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (Updated
-                    && FormUtilities.ShowQuestionMessage("保存せずに閉じてよろしいですか？")
-                        == DialogResult.No)
+                && FormUtilities.ShowQuestionMessage("保存せずに閉じてよろしいですか？") == DialogResult.No)
+            {
                 e.Cancel = true;
+            }
         }
+
         #endregion
 
         #region btnSave_Click - 上書き保存ボタン押下時処理
+
         /// <summary>
         /// 上書き保存ボタン押下時の処理です。
         /// テキストエリアの内容を編集対象ファイルに上書き保存します。
@@ -157,8 +166,10 @@ namespace SO.Library.Forms
         private void btnSave_Click(object sender, EventArgs e)
         {
             if (SaveConfirm
-                    && FormUtilities.ShowQuestionMessage("上書き保存してよろしいですか？") == DialogResult.No)
+                && FormUtilities.ShowQuestionMessage("上書き保存してよろしいですか？") == DialogResult.No)
+            {
                 return;
+            }
 
             using (var writer = new StreamWriter(FilePath, false, FileEncoding))
             {
@@ -167,11 +178,14 @@ namespace SO.Library.Forms
 
             Text = FileName;
             Updated = false;
+
             FormUtilities.ShowInformationMessage("保存しました。");
         }
+
         #endregion
 
         #region btnClose_Click - 閉じるボタン押下時処理
+
         /// <summary>
         /// 閉じるボタン押下時の処理です。
         /// フォームを閉じます。
@@ -182,9 +196,11 @@ namespace SO.Library.Forms
         {
             Close();
         }
+
         #endregion
 
         #region txtEditor_TextChanged - テキストエリア内容変更時処理
+
         /// <summary>
         /// テキストエリアの内容変更時の処理です。
         /// タイトルバーに編集中マークを表示し、編集中フラグをONに設定します。
@@ -196,6 +212,7 @@ namespace SO.Library.Forms
             Text = FileName + EDITED_MARK;
             Updated = true;
         }
+
         #endregion
 
         #endregion

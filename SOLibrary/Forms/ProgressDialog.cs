@@ -12,7 +12,7 @@ namespace SO.Library.Forms
     {
         #region プロパティ
 
-        #region Title - フォームタイトル取得・設定
+        #region Title - フォームタイトル取得または設定
         /// <summary>
         /// フォームのタイトルを取得または設定します。
         /// </summary>
@@ -23,7 +23,7 @@ namespace SO.Library.Forms
         }
         #endregion
 
-        #region Message - 処理メッセージ取得・設定
+        #region Message - 処理メッセージ取得または設定
         /// <summary>
         /// 処理メッセージを取得または設定します。
         /// </summary>
@@ -38,7 +38,7 @@ namespace SO.Library.Forms
         }
         #endregion
 
-        #region ProgressMinimun - プログレスバー最小値取得・設定
+        #region ProgressMinimun - プログレスバー最小値取得または設定
         /// <summary>
         /// プログレスバーの最小値を取得または設定します。
         /// </summary>
@@ -49,7 +49,7 @@ namespace SO.Library.Forms
         }
         #endregion
 
-        #region ProgressMaximum - プログレスバー最大値取得・設定
+        #region ProgressMaximum - プログレスバー最大値取得または設定
         /// <summary>
         /// プログレスバーの最大値を取得または設定します。
         /// </summary>
@@ -60,7 +60,7 @@ namespace SO.Library.Forms
         }
         #endregion
 
-        #region ProgressStep - プログレスバー増加幅取得・設定
+        #region ProgressStep - プログレスバー増加幅取得または設定
         /// <summary>
         /// プログレスバーの増分を取得または設定します。
         /// </summary>
@@ -71,7 +71,7 @@ namespace SO.Library.Forms
         }
         #endregion
 
-        #region CurrentValue - プログレスバー現在値取得・設定
+        #region CurrentValue - プログレスバー現在値取得または設定
         /// <summary>
         /// プログレスバーの現在値を取得または設定します。
         /// </summary>
@@ -82,7 +82,7 @@ namespace SO.Library.Forms
         }
         #endregion
 
-        #region ProgressVisible - プログレスバー可視状態取得・設定
+        #region ProgressVisible - プログレスバー可視状態取得または設定
         /// <summary>
         /// プログレスバーの可視状態を取得または設定します。
         /// </summary>

@@ -27,6 +27,7 @@ namespace SO.Library.Drawing.Barcode
         #endregion
 
         #region コンストラクタ
+
         /// <summary>
         /// 規定のコンストラクタです。
         /// </summary>
@@ -41,6 +42,7 @@ namespace SO.Library.Drawing.Barcode
             StopBarCount = stopBarCnt;
             BarValues = barValues;
         }
+
         #endregion
     }
 }

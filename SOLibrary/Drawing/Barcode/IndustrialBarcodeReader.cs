@@ -6,10 +6,10 @@ namespace SO.Library.Drawing.Barcode
     /// <summary>
     /// インダストリアル2of5形式のバーコードリーダクラス
     /// </summary>
-    /// <seealso cref="SO.Library.Drawing.Barcode.BarcodeReader2of5"/>
     internal sealed class IndustrialBarcodeReader : BarcodeReader2of5
     {
         #region InitializeBarcodeFormatInfo - バーコード形式情報初期化
+
         /// <summary>
         /// バーコード形式情報クラスを初期化します。
         /// </summary>
@@ -18,9 +18,11 @@ namespace SO.Library.Drawing.Barcode
         {
             info = new BarcodeFormatInfo(3, 5, 3, new[] { 1, 2, 4, 7, 0 });
         }
+
         #endregion
 
         #region ResetBarStartPoint - スタートコード開始座標設定
+
         /// <summary>
         /// スタートコードの開始座標を設定します。
         /// </summary>
@@ -29,18 +31,23 @@ namespace SO.Library.Drawing.Barcode
         /// <returns>スタートコードの開始座標が見つかった場合はtrue</returns>
         protected override bool ResetBarStartPoint(out int x, out int y)
         {
-            for (y = 0, x = 0; y < _bmp.Height; ++y)
+            for (y = 0, x = 0; y < _bmp.Height; y++)
             {
-                for (x = 0; x < _bmp.Width; ++x)
+                for (x = 0; x < _bmp.Width; x++)
                 {
-                    if (IsBlackPixel(x, y)) return true;
+                    if (IsBlackPixel(x, y))
+                    {
+                        return true;
+                    }
                 }
             }
             return false;
         }
+
         #endregion
 
         #region ReadStartPart - スタートコード解析
+
         /// <summary>
         /// スタートコードを解析します。
         /// </summary>
@@ -54,12 +61,13 @@ namespace SO.Library.Drawing.Barcode
         {
             int weight = 0;
             int barCnt = 0;
-            int[] weights = new int[_formatInfo.StartBarCount];
-            for (; x < _bmp.Width; ++x)
+            var weights = new int[_formatInfo.StartBarCount];
+
+            for (; x < _bmp.Width; x++)
             {
                 if (IsBlackPixel(x, y))
                 {
-                    ++weight;
+                    weight++;
                 }
                 else
                 {
@@ -77,20 +85,28 @@ namespace SO.Library.Drawing.Barcode
                         weights[barCnt] = weight;
                         weight = 0;
 
-                        ++barCnt;
+                        barCnt++;
                     }
                 }
 
-                if (barCnt == _formatInfo.StartBarCount) break;
+                if (barCnt == _formatInfo.StartBarCount)
+                {
+                    break;
+                }
             }
 
-            if (barCnt < _formatInfo.StartBarCount) return false;
+            if (barCnt < _formatInfo.StartBarCount)
+            {
+                return false;
+            }
 
             return IsWide(weights[0]) && IsWide(weights[1]) && IsNarrow(weights[2]);
         }
+
         #endregion
 
         #region ReadValuePart - 値部解析
+
         /// <summary>
         /// 値部を解析し、解析結果の文字列を返します。
         /// </summary>
@@ -103,15 +119,16 @@ namespace SO.Library.Drawing.Barcode
         protected override string ReadValuePart(ref int x, int y)
         {
             string barcode = string.Empty;
-            bool[,] barWeights = new bool[Digit, _formatInfo.ValueBarCount];
+            var barWeights = new bool[Digit, _formatInfo.ValueBarCount];
             int weight = 0;
             int barCnt = 0;
             int setCnt = 0;
-            for (; setCnt < Digit && x < _bmp.Width; ++x)
+
+            for (; setCnt < Digit && x < _bmp.Width; x++)
             {
                 if (IsBlackPixel(x, y))
                 {
-                    ++weight;
+                    weight++;
                 }
                 else
                 {
@@ -120,44 +137,56 @@ namespace SO.Library.Drawing.Barcode
                         barWeights[setCnt, barCnt] = IsWide(weight);
                         weight = 0;
 
-                        ++barCnt;
+                        barCnt++;
                     }
                 }
 
                 if (barCnt == _formatInfo.ValueBarCount)
                 {
-                    ++setCnt;
+                    setCnt++;
                     barCnt = 0;
                 }
             }
 
-            if (setCnt < Digit) return null;
+            if (setCnt < Digit)
+            {
+                return null;
+            }
 
-            for (int i = 0; i < barWeights.GetLength(0); ++i)
+            for (int i = 0; i < barWeights.GetLength(0); i++)
             {
                 int val = 0;
                 int boldCnt = 0;
-                for (int j = 0; j < barWeights.GetLength(1); ++j)
+
+                for (int j = 0; j < barWeights.GetLength(1); j++)
                 {
                     if (barWeights[i, j])
                     {
                         val += _formatInfo.BarValues[j];
-                        ++boldCnt;
+                        boldCnt++;
                     }
                 }
 
-                if (boldCnt > 2) return null;
+                if (boldCnt > 2)
+                {
+                    return null;
+                }
 
-                if (val > 9) val = 0;
+                if (val > 9)
+                {
+                    val = 0;
+                }
 
                 barcode += val.ToString();
             }
 
             return barcode;
         }
+
         #endregion
 
         #region ReadStopPart - ストップコード解析
+
         /// <summary>
         /// ストップコードを解析します。
         /// </summary>
@@ -171,12 +200,13 @@ namespace SO.Library.Drawing.Barcode
         {
             int weight = 0;
             int barCnt = 0;
-            int[] weights = new int[_formatInfo.StopBarCount];
-            for (; x < _bmp.Width; ++x)
+            var weights = new int[_formatInfo.StopBarCount];
+
+            for (; x < _bmp.Width; x++)
             {
                 if (IsBlackPixel(x, y))
                 {
-                    ++weight;
+                    weight++;
                 }
                 else
                 {
@@ -185,17 +215,24 @@ namespace SO.Library.Drawing.Barcode
                         weights[barCnt] = weight;
                         weight = 0;
 
-                        ++barCnt;
+                        barCnt++;
                     }
                 }
 
-                if (barCnt == _formatInfo.StopBarCount) break;
+                if (barCnt == _formatInfo.StopBarCount)
+                {
+                    break;
+                }
             }
 
-            if (barCnt < _formatInfo.StopBarCount) return false;
+            if (barCnt < _formatInfo.StopBarCount)
+            {
+                return false;
+            }
 
             return IsWide(weights[0]) && IsNarrow(weights[1]) && IsWide(weights[2]);
         }
+
         #endregion
     }
 }

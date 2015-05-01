@@ -18,7 +18,7 @@ namespace SO.Library.Data
 
         #endregion
 
-        #region メンバ変数
+        #region インスタンス変数
 
         /// <summary>唯一のインスタンス</summary>
         protected static SqlAccessor _instance;
@@ -113,7 +113,10 @@ namespace SO.Library.Data
         /// <param name="connectionString">接続文字列</param>
         public void Open(string connectionString)
         {
-            if (_conn != null) _conn.Dispose();
+            if (_conn != null)
+            {
+                _conn.Dispose();
+            }
 
             _conn = new SqlConnection(connectionString);
             _conn.Open();

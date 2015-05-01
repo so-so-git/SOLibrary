@@ -28,6 +28,7 @@ namespace SO.Library.Extensions
         #endregion
 
         #region StartWithHiding - シェル画面を表示せずプロセス開始(Process拡張)
+
         /// <summary>
         /// (System.Diagnostics.Process拡張)
         /// シェル画面を表示せずにプロセスを開始します。
@@ -41,9 +42,11 @@ namespace SO.Library.Extensions
 
             return proc.Start();
         }
+
         #endregion
 
         #region ConvertAddressBytes - IPAddressを等価の文字列に変換(IPAddress拡張)
+
         /// <summary>
         /// (System.Net.IPAddress拡張)
         /// IPAddress型で示されるIPアドレスを「xxx.xxx.xxx.xxx」形式の文字列に変換します。
@@ -55,13 +58,17 @@ namespace SO.Library.Extensions
             string address = string.Empty;
             foreach (var addrByte in ip.GetAddressBytes())
             {
-                if (address != string.Empty) address += ".";
+                if (address != string.Empty)
+                {
+                    address += ".";
+                }
 
                 address += addrByte.ToString();
             }
 
             return address;
         }
+
         #endregion
 
         #region ToSafeString - Nullセーフな文字列変換(Object拡張)
@@ -75,7 +82,9 @@ namespace SO.Library.Extensions
         public static string ToSafeString(this object obj)
         {
             if (obj == null || Convert.IsDBNull(obj))
+            {
                 return string.Empty;
+            }
 
             return obj.ToString();
         }

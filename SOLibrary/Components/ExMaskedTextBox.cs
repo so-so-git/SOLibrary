@@ -10,7 +10,7 @@ namespace SO.Library.Components
     /// </summary>
     public class ExMaskedTextBox : MaskedTextBox
     {
-        #region メンバ変数
+        #region インスタンス変数
 
         /// <summary>非読み取り専用時の背景色</summary>
         private Color _storeBackColor;
@@ -26,7 +26,8 @@ namespace SO.Library.Components
 
         #endregion
 
-        #region ReadOnlyプロパティ - 読み取り専用設定
+        #region プロパティ
+
         /// <summary>
         /// コントロールを読み取り専用とするかどうかを取得または設定します。
         /// </summary>
@@ -63,9 +64,7 @@ namespace SO.Library.Components
                 }
             }
         }
-        #endregion
 
-        #region ReadOnlyBackColorプロパティ - 読み取り専用時背景色
         /// <summary>
         /// 読み取り専用時の背景色を取得または設定します。
         /// </summary>
@@ -79,12 +78,12 @@ namespace SO.Library.Components
             {
                 _readOnlyBackColor = value;
                 if (ReadOnly && Enabled)
+                {
                     BackColor = _readOnlyBackColor;
+                }
             }
         }
-        #endregion
 
-        #region ReadOnlyForeColorプロパティ - 読み取り専用時の前景色
         /// <summary>
         /// 読み取り専用時の前景色を取得または設定します。
         /// </summary>
@@ -98,12 +97,16 @@ namespace SO.Library.Components
             {
                 _readOnlyForeColor = value;
                 if (ReadOnly && Enabled)
+                {
                     ForeColor = _readOnlyForeColor;
+                }
             }
         }
+
         #endregion
 
         #region コンストラクタ
+
         /// <summary>
         /// デフォルトのコンストラクタです。
         /// </summary>
@@ -112,6 +115,7 @@ namespace SO.Library.Components
             _storeBackColor = BackColor;
             _storeForeColor = ForeColor;
         }
+
         #endregion
     }
 }

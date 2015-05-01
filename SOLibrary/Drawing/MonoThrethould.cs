@@ -10,14 +10,19 @@
 
         /// <summary>極めて低めの閾値を取得します。</summary>
         public static MonoThrethould VeryLow { get { return new MonoThrethould(42); } }
+
         /// <summary>低めの閾値を取得します。</summary>
         public static MonoThrethould Low { get { return new MonoThrethould(84); } }
+
         /// <summary>中間の閾値を取得します。</summary>
         public static MonoThrethould Medium { get { return new MonoThrethould(126); } }
+
         /// <summary>高めの閾値を取得します。</summary>
         public static MonoThrethould High { get { return new MonoThrethould(170); } }
+
         /// <summary>極めて高めの閾値を取得します。</summary>
         public static MonoThrethould VeryHigh { get { return new MonoThrethould(212); } }
+
 
         /// <summary>
         /// 白黒の閾値を取得します。

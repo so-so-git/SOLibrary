@@ -11,7 +11,7 @@ namespace SO.Library.Collections
     /// <typeparam name="T">格納する要素の型</typeparam>
     public class CirculateList<T> : IList<T>
     {
-        #region インスタンスフィールド
+        #region インスタンス変数
 
         /// <summary>内部リスト</summary>
         private List<T> _internalList;
@@ -20,7 +20,9 @@ namespace SO.Library.Collections
 
         #region プロパティ
 
-        /// <summary>現在位置のインデックスを取得・または設定します。</summary>
+        /// <summary>
+        /// 現在位置のインデックスを取得または設定します。
+        /// </summary>
         public int CurrentPosition { get; set; }
 
         #endregion
@@ -59,6 +61,7 @@ namespace SO.Library.Collections
         #endregion
 
         #region TakeSome - 指定した数の要素を取得
+
         /// <summary>
         /// 現在の位置のインデックスから指定した数の要素を取得します。
         /// </summary>
@@ -71,9 +74,11 @@ namespace SO.Library.Collections
                 yield return _internalList[ToCirculateIndex(i)];
             }
         }
+
         #endregion
 
         #region TakeOneAround - 一周分の要素を取得
+
         /// <summary>
         /// 現在の位置のインデックスから、一周分の要素を取得します。
         /// 要素の順序は、現在の位置のインデックスのものが最初になります。
@@ -83,9 +88,11 @@ namespace SO.Library.Collections
         {
             return TakeSome(_internalList.Count);
         }
+
         #endregion
 
         #region ToCirculateIndex - 循環を考慮したインデックスに変換
+
         /// <summary>
         /// 渡されたインデックスを、循環を考慮したインデックスに変換します。
         /// </summary>
@@ -94,16 +101,23 @@ namespace SO.Library.Collections
         public int ToCirculateIndex(int index)
         {
             if (_internalList.Count == 0)
+            {
                 return 0;
+            }
 
             if (index >= _internalList.Count)
+            {
                 return index % _internalList.Count;
+            }
 
             if (index < 0)
+            {
                 return _internalList.Count - index % _internalList.Count;
+            }
 
             return index;
         }
+
         #endregion
 
         #region IList<T>実装

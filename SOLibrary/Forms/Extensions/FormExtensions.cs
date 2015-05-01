@@ -9,6 +9,7 @@ namespace SO.Library.Forms.Extensions
     public static class FormExtensions
     {
         #region BackToOwner - 指定フォームを破棄、オーナーフォーム表示(Form拡張)
+
         /// <summary>
         /// (System.Windows.Forms.Form拡張)
         /// 指定フォームを破棄し、そのオーナーフォームがある場合はオーナーフォームを表示します。
@@ -18,7 +19,10 @@ namespace SO.Library.Forms.Extensions
         {
             if (form.Owner != null)
             {
-                if (!form.Owner.Visible) form.Owner.Visible = true;
+                if (!form.Owner.Visible)
+                {
+                    form.Owner.Visible = true;
+                }
 
                 form.Owner.Activate();
                 form.Owner.Invalidate(true);
@@ -26,6 +30,7 @@ namespace SO.Library.Forms.Extensions
 
             form.Dispose();
         }
+
         #endregion
     }
 }

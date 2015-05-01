@@ -7,7 +7,6 @@ using System.Runtime.InteropServices;
 
 namespace SO.Library.Drawing
 {
-    #region class ImageUtilities - 汎用画像処理機能提供クラス
     /// <summary>
     /// 汎用画像処理機能提供クラス
     /// </summary>
@@ -17,14 +16,17 @@ namespace SO.Library.Drawing
 
         /// <summary>NTSCの赤の加重率</summary>
         private const int NTSC_R_RATIO = (int)(0.298912 * 1024);
+
         /// <summary>NTSCの緑の加重率</summary>
         private const int NTSC_G_RATIO = (int)(0.586611 * 1024);
+
         /// <summary>NTSCの青の加重率</summary>
         private const int NTSC_B_RATIO = (int)(0.114478 * 1024);
 
         #endregion
 
         #region Trim - 画像トリミング
+
         /// <summary>
         /// 画像をトリミングします。
         /// (ピクセル形式はFormat32bppArgb固定です)
@@ -48,9 +50,11 @@ namespace SO.Library.Drawing
         {
             return src.Clone(rect, pxFormat);
         }
+
         #endregion
 
         #region ToMonoScale - モノクローム変換
+
         /// <summary>
         /// 指定された手法と閾値を用いて画像をモノクロームに変換します。
         /// </summary>
@@ -62,9 +66,11 @@ namespace SO.Library.Drawing
         {
             return ToMonoScaleCommon(src, method, threshold);
         }
+
         #endregion
 
         #region ToGrayScale - グレースケール変換
+
         /// <summary>
         /// 指定された手法で画像をグレースケールに変換します。
         /// </summary>
@@ -75,9 +81,11 @@ namespace SO.Library.Drawing
         {
             return ToMonoScaleCommon(src, method, null);
         }
+
         #endregion
 
         #region ToMonoScaleCommon - モノクローム・グレースケール変換
+
         /// <summary>
         /// モノクローム変換とグレースケール変換の共通処理です。
         /// thresholdがnullの場合はグレースケールに、
@@ -92,6 +100,7 @@ namespace SO.Library.Drawing
             Bitmap dest = null;
             BitmapData srcData = null;
             BitmapData destData = null;
+
             try
             {
                 // 画像入出力用のポインタを取得
@@ -132,15 +141,25 @@ namespace SO.Library.Drawing
                     if (threshold == null)
                     {
                         // グレースケール変換：平均値を各色に上書き
-                        pixels[i] = pixels[i + 1] = pixels[i + 2] = grayValue;
+                        pixels[i]     = grayValue;
+                        pixels[i + 1] = grayValue;
+                        pixels[i + 2] = grayValue;
                     }
                     else
                     {
                         // モノスケール変換：閾値以上は白、閾値未満は黒として各色に上書き
                         if (grayValue >= threshold.Value)
-                            pixels[i] = pixels[i + 1] = pixels[i + 2] = 0xFF;
+                        {
+                            pixels[i]     = 0xFF;
+                            pixels[i + 1] = 0xFF;
+                            pixels[i + 2] = 0xFF;
+                        }
                         else
-                            pixels[i] = pixels[i + 1] = pixels[i + 2] = 0x00;
+                        {
+                            pixels[i]     = 0x00;
+                            pixels[i + 1] = 0x00;
+                            pixels[i + 2] = 0x00;
+                        }
                     }
 
                     // alphaは最大値固定
@@ -153,15 +172,23 @@ namespace SO.Library.Drawing
             finally
             {
                 // 画像データのポインタを破棄
-                if (srcData != null) src.UnlockBits(srcData);
-                if (destData != null) dest.UnlockBits(destData);
+                if (srcData != null)
+                {
+                    src.UnlockBits(srcData);
+                }
+                if (destData != null)
+                {
+                    dest.UnlockBits(destData);
+                }
             }
 
             return dest;
         }
+
         #endregion
 
         #region GetGrayByteByBasic - 単純平均法を用いてグレースケール値を取得
+
         /// <summary>
         /// 単純平均法を用いてグレースケール値を取得します。
         /// </summary>
@@ -179,9 +206,11 @@ namespace SO.Library.Drawing
 
             return (byte)(grayValue / 3);
         }
+
         #endregion
 
         #region GetGrayByteByMiddleValue - 中間値法を用いてグレースケール値を取得
+
         /// <summary>
         /// 中間値法を用いてグレースケール値を取得します。
         /// </summary>
@@ -190,11 +219,12 @@ namespace SO.Library.Drawing
         /// <returns>グレースケール値</returns>
         private static byte GetGrayByteByMiddleValue(byte[] pixels, int index)
         {
+            var sort = new List<byte>(3);
+
             // RGBの最小値と最大値の平均を算出
-            List<byte> sort = new List<byte>(3);
-            for (int i = index; i < index + 3; ++i)
+            for (int i = index; i < index + 3; i++)
             {
-                for (int j = 0; j < sort.Count; ++j)
+                for (int j = 0; j < sort.Count; j++)
                 {
                     if (pixels[i] < sort[j])
                     {
@@ -212,9 +242,11 @@ namespace SO.Library.Drawing
 
             return (byte)((maxValue + minValue) / 2);
         }
+
         #endregion
 
         #region GetGrayByteByNTSC - NTSC係数を使用した加重平均法を用いてグレースケール値を取得
+
         /// <summary>
         /// NTSC係数を使用した加重平均法を用いてグレースケール値を取得します。
         /// </summary>
@@ -226,7 +258,7 @@ namespace SO.Library.Drawing
             int grayValue = 0;
 
             // NTSC係数を適用し平均値を算出(下位バイトからBGRAとなる)
-            grayValue += pixels[index] * NTSC_B_RATIO;      // B
+            grayValue += pixels[index]     * NTSC_B_RATIO;  // B
             grayValue += pixels[index + 1] * NTSC_G_RATIO;  // G
             grayValue += pixels[index + 2] * NTSC_R_RATIO;  // R
 
@@ -235,11 +267,12 @@ namespace SO.Library.Drawing
 
             return (byte)grayValue;
         }
+
         #endregion
     }
-    #endregion
 
     #region GrayScaleMethod - グレースケール化手法列挙体
+
     /// <summary>
     /// グレースケール変換手法列挙体
     /// </summary>
@@ -252,5 +285,6 @@ namespace SO.Library.Drawing
         /// <summary>NTSC係数を使用した加重平均法</summary>
         NTSC,
     }
+
     #endregion
 }

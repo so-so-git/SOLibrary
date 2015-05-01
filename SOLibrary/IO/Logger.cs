@@ -24,7 +24,6 @@ namespace SO.Library.IO
 
         #region プロパティ
 
-        #region LogFile - ログファイル取得・設定
         /// <summary>
         /// ログファイルを取得または設定します。
         /// </summary>
@@ -33,9 +32,7 @@ namespace SO.Library.IO
             get { return _logFile; }
             set { Initialize(value.FullName, _encoding); }
         }
-        #endregion
 
-        #region FileEncoding - ログファイルエンコーディング取得・設定
         /// <summary>
         /// ログファイルの文字コードを取得または設定します。
         /// </summary>
@@ -44,7 +41,6 @@ namespace SO.Library.IO
             get { return _encoding; }
             set { Initialize(_logFile.FullName, value); }
         }
-        #endregion
 
         #endregion
 
@@ -88,7 +84,9 @@ namespace SO.Library.IO
 
             // 作成先ディレクトリ存在確認(無ければ作る)
             if (!Directory.Exists(Path.GetDirectoryName(logPath)))
+            {
                 Directory.CreateDirectory(Path.GetDirectoryName(logPath));
+            }
 
             // ログファイルローテーション
             RotationLogFile();
@@ -236,7 +234,9 @@ namespace SO.Library.IO
             {
                 sb.Append(" : ").Append(className);
                 if (string.IsNullOrEmpty(methodName))
+                {
                     sb.Append("#").AppendLine(methodName);
+                }
             }
 
             return sb.ToString();

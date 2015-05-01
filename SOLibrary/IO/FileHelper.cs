@@ -25,18 +25,18 @@ namespace SO.Library.IO
         #region プロパティ
 
         /// <summary>
-        /// 読込ファイルのパスを取得・設定します。
+        /// 読込ファイルのパスを取得または設定します。
         /// </summary>
         public string FilePath { get; set; }
 
         /// <summary>
-        /// 改行コードを取得・設定します。
+        /// 改行コードを取得または設定します。
         /// 規定値はOS標準の改行コードです。
         /// </summary>
         public string LineCode { get; set; }
 
         /// <summary>
-        /// 文字コードを取得・設定します。
+        /// 文字コードを取得または設定します。
         /// 規定値はShift_JISです。
         /// </summary>
         public Encoding FileEncoding { get; set; }
@@ -63,7 +63,11 @@ namespace SO.Library.IO
         {
             get
             {
-                if (!Exists) return -1;
+                if (!Exists)
+                {
+                    return -1;
+                }
+
                 return _currentRow;
             }
             protected set
@@ -80,13 +84,17 @@ namespace SO.Library.IO
         {
             get
             {
-                if (!Exists) return -1;
+                if (!Exists)
+                {
+                    return -1;
+                }
+
                 return new FileInfo(FilePath).Length;
             }
         }
 
         /// <summary>
-        /// 項目リストを取得・設定します。
+        /// 項目リストを取得または設定します。
         /// </summary>
         public virtual List<T> Items
         {
@@ -97,6 +105,7 @@ namespace SO.Library.IO
         #endregion
         
         #region コンストラクタ
+
         /// <summary>
         /// インスタンスを作成します。
         /// </summary>
@@ -122,9 +131,11 @@ namespace SO.Library.IO
             FileEncoding = Encoding.GetEncoding(932);
             FetchStatus = FileFetchStatus.BOF;
         }
+
         #endregion
 
         #region Dispose - リソース破棄
+
         /// <summary>
         /// Close()を呼び出し、使用しているリソースを全て破棄します。
         /// </summary>
@@ -132,6 +143,7 @@ namespace SO.Library.IO
         {
             Close();
         }
+
         #endregion
 
         #region 抽象メソッド
@@ -156,6 +168,7 @@ namespace SO.Library.IO
     }
 
     #region enum FileItemType - ファイル項目データ型列挙体
+
     /// <summary>
     /// ファイル項目データ型列挙体
     /// </summary>
@@ -176,9 +189,11 @@ namespace SO.Library.IO
         /// <summary>日時</summary>
         DateTime,
     }
+
     #endregion
 
     #region enum FileFetchStatus - 固定長ファイルレコードフェッチ状態列挙体
+
     /// <summary>
     /// 固定長ファイルレコードフェッチ状態列挙体
     /// </summary>
@@ -193,5 +208,6 @@ namespace SO.Library.IO
         /// <summary>最後のレコードの後に位置している状態</summary>
         EOF,
     }
+
     #endregion
 }

@@ -9,7 +9,6 @@ namespace SO.Library.IO
     /// <summary>
     /// 固定長レコードファイル操作クラス
     /// </summary>
-    /// <seealso cref="SO.Library.IO.FileHelper&lt;T&gt;"/>
     public sealed class FixedLengthFileHelper : FileHelper<FixedLengthFileItem>
     {
         #region インスタンス変数
@@ -22,7 +21,7 @@ namespace SO.Library.IO
         #region プロパティ
 
         /// <summary>
-        /// レコード長(バイト)を取得・設定します。
+        /// レコード長(バイト)を取得または設定します。
         /// </summary>
         public int RecordLength { get; set; }
 
@@ -34,7 +33,10 @@ namespace SO.Library.IO
         {
             get
             {
-                if (!Exists) return -1;
+                if (!Exists)
+                {
+                    return -1;
+                }
 
                 switch (FetchStatus)
                 {
@@ -58,13 +60,17 @@ namespace SO.Library.IO
         {
             get
             {
-                if (!Exists) return false;
+                if (!Exists)
+                {
+                    return false;
+                }
+
                 return FileSize % RecordLength == 0;
             }
         }
 
         /// <summary>
-        /// 項目リストを取得・設定します。
+        /// 項目リストを取得または設定します。
         /// 同時に、全項目の項目長定義からレコード長を自動算出します。
         /// </summary>
         public override List<FixedLengthFileItem> Items
@@ -76,7 +82,9 @@ namespace SO.Library.IO
 
                 int len = 0;
                 foreach (var item in value)
+                {
                     len += item.DefinedLength;
+                }
 
                 RecordLength = len;
             }
@@ -95,6 +103,7 @@ namespace SO.Library.IO
         #endregion
 
         #region コンストラクタ
+
         /// <summary>
         /// レコード長を指定してインスタンスを作成します。
         /// </summary>
@@ -117,21 +126,29 @@ namespace SO.Library.IO
         #endregion
 
         #region Open - 読込ストリームオープン
+
         /// <summary>
         /// 対象ファイルの読込ストリームを開きます。
         /// </summary>
         public override void Open()
         {
-            if (_reader != null) return;
+            if (_reader != null)
+            {
+                return;
+            }
 
             if (!Exists)
+            {
                 throw new FileNotFoundException("読み込みファイルが見つかりません。");
+            }
 
             _reader = new FileStream(FilePath, FileMode.Open, FileAccess.Read);
         }
+
         #endregion
 
         #region Close - 読込ストリームクローズ
+
         /// <summary>
         /// 対象ファイルの読込ストリームを閉じます。
         /// </summary>
@@ -143,16 +160,21 @@ namespace SO.Library.IO
                 _reader = null;
             }
         }
+
         #endregion
 
         #region Next - 次の行を読込
+
         /// <summary>
         /// 現在の行位置の次の行の内容を読み込み、その値をItemsにセットします。
         /// </summary>
         /// <returns>レコードフェッチ状態</returns>
         public override FileFetchStatus Next()
         {
-            if (FetchStatus == FileFetchStatus.EOF) return FileFetchStatus.EOF;
+            if (FetchStatus == FileFetchStatus.EOF)
+            {
+                return FileFetchStatus.EOF;
+            }
 
             var bfr = new byte[RecordLength];
             int remain = _reader.Read(bfr, 0, RecordLength);
@@ -161,7 +183,9 @@ namespace SO.Library.IO
             if (remain == 0)
             {
                 foreach (var item in Items)
+                {
                     item.Value = null;
+                }
 
                 return FetchStatus = FileFetchStatus.EOF;
             }
@@ -174,7 +198,9 @@ namespace SO.Library.IO
                     Items[i].Value = FileEncoding.GetString(bfr, offset, remain);
 
                     for (int j = i + 1; j < Items.Count; ++j)
+                    {
                         Items[j].Value = null;
+                    }
 
                     return FetchStatus = FileFetchStatus.NotFilled;
                 }
@@ -186,9 +212,11 @@ namespace SO.Library.IO
 
             return FetchStatus = FileFetchStatus.Normal;
         }
+
         #endregion
 
         #region SplitByLineCode - レコード長単位で改行コードで分割
+
         /// <summary>
         /// レコード長毎に改行コードを挿入し、新しいファイルを作成します。
         /// </summary>
@@ -207,9 +235,11 @@ namespace SO.Library.IO
                 }
             }
         }
+
         #endregion
 
         #region RemoveLineCode - 改行コードを除去
+
         /// <summary>
         /// 改行コードを除去し、新しいファイルを作成します。
         /// </summary>
@@ -221,9 +251,12 @@ namespace SO.Library.IO
             {
                 string bfr;
                 while ((bfr = sr.ReadLine()) != null)
+                {
                     sw.WriteLine(bfr);
+                }
             }
         }
+
         #endregion
     }
 }

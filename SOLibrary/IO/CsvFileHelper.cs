@@ -10,7 +10,6 @@ namespace SO.Library.IO
     /// <summary>
     /// CSVファイル操作クラス
     /// </summary>
-    /// <seealso cref="SO.Library.IO.FileHelper&lt;T&gt;"/>
     public sealed class CsvFileHelper : FileHelper<FileItem>
     {
         #region クラス定数
@@ -73,7 +72,7 @@ namespace SO.Library.IO
         }
 
         /// <summary>
-        /// 項目値をダブルクォーテーションで囲むかを取得・設定します。
+        /// 項目値をダブルクォーテーションで囲むかを取得または設定します。
         /// FileKind が TSV の場合は、常にfalseになります。
         /// 既定値はfalseです。
         /// </summary>
@@ -86,6 +85,7 @@ namespace SO.Library.IO
         #endregion
 
         #region コンストラクタ
+
         /// <summary>
         /// インスタンスを作成します。
         /// </summary>
@@ -108,24 +108,33 @@ namespace SO.Library.IO
         {
             FileKind = kind;
         }
+
         #endregion
 
         #region Open - 読込ストリームオープン
+
         /// <summary>
         /// 対象ファイルの読込ストリームを開きます。
         /// </summary>
         public override void Open()
         {
-            if (_reader != null) return;
+            if (_reader != null)
+            {
+                return;
+            }
 
             if (!Exists)
+            {
                 throw new FileNotFoundException("読み込みファイルが見つかりません。");
+            }
 
             _reader = new StreamReader(FilePath, FileEncoding);
         }
+
         #endregion
 
         #region Close - 読込ストリームクローズ
+
         /// <summary>
         /// 対象ファイルの読込ストリームを閉じます。
         /// </summary>
@@ -137,9 +146,11 @@ namespace SO.Library.IO
                 _reader = null;
             }
         }
+
         #endregion
 
         #region Next - 次の行を読込
+
         /// <summary>
         /// 現在の行位置の次の行の内容を読み込み、その値をItemsにセットします。
         /// </summary>
@@ -152,13 +163,23 @@ namespace SO.Library.IO
             Items.Clear();
             ++CurrentRow;
 
-            if (bfr == null) return FetchStatus = FileFetchStatus.EOF;
+            if (bfr == null)
+            {
+                return FetchStatus = FileFetchStatus.EOF;
+            }
 
-            if (UseDoubleQuote) SplitItemsWithQuote(bfr);
-            else SplitItems(bfr);
+            if (UseDoubleQuote)
+            {
+                SplitItemsWithQuote(bfr);
+            }
+            else
+            {
+                SplitItems(bfr);
+            }
 
             return FetchStatus = FileFetchStatus.Normal;
         }
+
         #endregion
 
         private void SplitItems(string rec)
@@ -179,6 +200,7 @@ namespace SO.Library.IO
     }
 
     #region enum CSV/TSVファイル種別列挙体
+
     /// <summary>
     /// CSV/TSVファイル種別列挙体
     /// </summary>
@@ -189,5 +211,6 @@ namespace SO.Library.IO
         /// <summary>TSVファイル</summary>
         TSV,
     }
+
     #endregion
 }

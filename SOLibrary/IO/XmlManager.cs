@@ -10,6 +10,7 @@ namespace SO.Library.IO
     public static class XmlManager
     {
         #region Serialize - オブジェクトシリアライズ
+
         /// <summary>
         /// 指定されたオブジェクトをXMLファイルにシリアライズします。
         /// </summary>
@@ -24,9 +25,11 @@ namespace SO.Library.IO
                 serializer.Serialize(fs, obj);
             }
         }
+
         #endregion
 
         #region Deserialize - オブジェクトデシリアライズ
+
         /// <summary>
         /// 指定されたXMLファイルをデシリアライズします。
         /// </summary>
@@ -71,6 +74,7 @@ namespace SO.Library.IO
                 return (T)serializer.Deserialize(fs);
             }
         }
+
         #endregion
     }
 }

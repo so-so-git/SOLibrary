@@ -11,12 +11,16 @@ namespace SO.Library.Net
 
         /// <summary>IPアドレス</summary>
         private string _ipAddress;
+
         /// <summary>サブネットマスク</summary>
         private string _subnetMask;
+
         /// <summary>デフォルトゲートウェイ</summary>
         private string _defaultGateway;
+
         /// <summary>優先DNSサーバアドレス</summary>
         private string _primaryDns;
+
         /// <summary>代替DNSサーバアドレス</summary>
         private string _secondaryDns;
 
@@ -30,12 +34,12 @@ namespace SO.Library.Net
         public string Name { get; internal set; }
 
         /// <summary>
-        /// DHCPを利用したIPの自動取得を行うかどうかを取得・設定します。
+        /// DHCPを利用したIPの自動取得を行うかどうかを取得または設定します。
         /// </summary>
         public bool UseIpDhcp { get; set; }
 
         /// <summary>
-        /// IPアドレスを取得・設定します。
+        /// IPアドレスを取得または設定します。
         /// 書式は「xxx.xxx.xxx.xxx」です。
         /// </summary>
         public string IpAddress
@@ -51,7 +55,7 @@ namespace SO.Library.Net
         }
 
         /// <summary>
-        /// サブネットマスクを取得・設定します。
+        /// サブネットマスクを取得または設定します。
         /// 書式は「xxx.xxx.xxx.xxx」です。
         /// </summary>
         public string SubnetMask
@@ -67,7 +71,7 @@ namespace SO.Library.Net
         }
 
         /// <summary>
-        /// デフォルトゲートウェイを取得・設定します。
+        /// デフォルトゲートウェイを取得または設定します。
         /// 書式は「xxx.xxx.xxx.xxx」です。
         /// </summary>
         public string DefaultGateway
@@ -83,12 +87,12 @@ namespace SO.Library.Net
         }
 
         /// <summary>
-        /// DHCPを利用したDNSサーバのアドレス自動取得を行うかどうかを取得・設定します。
+        /// DHCPを利用したDNSサーバのアドレス自動取得を行うかどうかを取得または設定します。
         /// </summary>
         public bool UseDnsDhcp { get; set; }
 
         /// <summary>
-        /// 優先DNSサーバのアドレスを取得・設定します。
+        /// 優先DNSサーバのアドレスを取得または設定します。
         /// 書式は「xxx.xxx.xxx.xxx」です。
         /// </summary>
         public string PrimaryDns
@@ -104,7 +108,7 @@ namespace SO.Library.Net
         }
 
         /// <summary>
-        /// 代替DNSサーバのアドレスを取得・設定します。
+        /// 代替DNSサーバのアドレスを取得または設定します。
         /// 書式は「xxx.xxx.xxx.xxx」です。
         /// </summary>
         public string SecondaryDns
@@ -132,6 +136,7 @@ namespace SO.Library.Net
         #endregion
 
         #region GetIPBlock - IPアドレスの指定バイトの文字列取得
+
         /// <summary>
         /// IPアドレスの各バイトの内、指定した箇所のものを文字列表現で取得します。
         /// </summary>
@@ -141,9 +146,11 @@ namespace SO.Library.Net
         {
             return IpAddress.Split(new[] { '.' })[block];
         }
+
         #endregion
 
         #region GetSubnetBlock - サブネットマスクの指定バイトの文字列取得
+
         /// <summary>
         /// サブネットマスクの各バイトの内、指定した箇所のものを文字列表現で取得します。
         /// </summary>
@@ -153,9 +160,11 @@ namespace SO.Library.Net
         {
             return SubnetMask.Split(new[] { '.' })[block];
         }
+
         #endregion
 
         #region GetGatewayBlock - デフォルトゲートウェイの指定バイトの文字列取得
+
         /// <summary>
         /// デフォルトゲートウェイの各バイトの内、指定した箇所のものを文字列表現で取得します。
         /// </summary>
@@ -165,9 +174,11 @@ namespace SO.Library.Net
         {
             return DefaultGateway.Split(new[] { '.' })[block];
         }
+
         #endregion
 
         #region GetPrimaryDnsBlock - 優先DNSサーバの指定バイトの文字列取得
+
         /// <summary>
         /// 優先DNSサーバの各バイトの内、指定した箇所のものを文字列表現で取得します。
         /// </summary>
@@ -177,9 +188,11 @@ namespace SO.Library.Net
         {
             return PrimaryDns.Split(new[] { '.' })[block];
         }
+
         #endregion
 
         #region GetSecondaryDnsBlock - 代替DNSサーバの指定バイトの文字列取得
+
         /// <summary>
         /// 代替DNSサーバの各バイトの内、指定した箇所のものを文字列表現で取得します。
         /// </summary>
@@ -189,6 +202,7 @@ namespace SO.Library.Net
         {
             return SecondaryDns.Split(new[] { '.' })[block];
         }
+
         #endregion
     }
 }

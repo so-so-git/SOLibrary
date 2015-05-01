@@ -10,7 +10,6 @@ using SO.Library.Extensions;
 
 namespace SO.Library.Net
 {
-    #region NetworkUtilities - ネットワーク関連のユーティリティクラス
     /// <summary>
     /// ネットワーク関連のユーティリティクラス
     /// </summary>
@@ -29,7 +28,7 @@ namespace SO.Library.Net
         #region プロパティ
 
         /// <summary>
-        /// netshコマンドのタイムアウト時間(ミリ秒)を取得・設定します。
+        /// netshコマンドのタイムアウト時間(ミリ秒)を取得または設定します。
         /// 規定値は30000ミリ秒です。
         /// </summary>
         public static int ProcessTimeout { get; set; }
@@ -37,6 +36,7 @@ namespace SO.Library.Net
         #endregion
 
         #region 静的コンストラクタ
+
         /// <summary>
         /// 静的コンストラクタです。
         /// </summary>
@@ -44,9 +44,11 @@ namespace SO.Library.Net
         {
             ProcessTimeout = DEFAULT_CMD_TIMEOUT;
         }
+
         #endregion
 
         #region IsValidAddress - アドレス書式チェック
+
         /// <summary>
         /// 指定されたアドレスが、ネットワークアドレスとして
         /// 正しい書式(xxx.xxx.xxx.xxx)かをチェックします。
@@ -58,11 +60,14 @@ namespace SO.Library.Net
             //  0～255の正規表現を定義
             // (但し、2桁以上の場合に先頭1文字ないし2文字が0のものはNG)
             const string BLOCK_PATTERN = "([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])";
+
             return Regex.IsMatch(address, string.Format("^{0}\\.{0}\\.{0}\\.{0}$", BLOCK_PATTERN));
         }
+
         #endregion
 
         #region GetAdapterInfo - ネットワークアダプタ情報取得
+
         /// <summary>
         /// 指定された名前のネットワークアダプタ情報を取得します。
         /// 一致する名前のネットワークアダプタが存在しない場合はnullが返されます。
@@ -74,14 +79,18 @@ namespace SO.Library.Net
             foreach (var netInfo in NetworkInterface.GetAllNetworkInterfaces())
             {
                 if (netInfo.Name == name)
+                {
                     return CreateAdapterInfo(netInfo);
+                }
             }
 
             return null;
         }
+
         #endregion
 
         #region GetAdapterInfos - 複数のネットワークアダプタ情報取得
+
         /// <summary>
         /// イーサネットタイプの全てのネットワークアダプタ情報を取得します。
         /// </summary>
@@ -102,12 +111,15 @@ namespace SO.Library.Net
             foreach (var netInfo in NetworkInterface.GetAllNetworkInterfaces())
             {
                 if (netInfo.NetworkInterfaceType != type) continue;
+
                 yield return CreateAdapterInfo(netInfo);
             }
         }
+
         #endregion
 
         #region CreateAdapterInfo - ネットワークアダプタ情報生成
+
         /// <summary>
         /// 指定されたNetworkInterfaceを基にネットワークアダプタ情報を生成します。
         /// </summary>
@@ -160,11 +172,13 @@ namespace SO.Library.Net
 
             return adapterInfo;
         }
+
         #endregion
 
         #region === netshコマンド関連 ===
 
         #region DoNetSh - netshコマンド実行
+
         /// <summary>
         /// netshコマンドを別プロセスで実行します。
         /// 設定内容に関してはargumentsで指定します。
@@ -192,9 +206,11 @@ namespace SO.Library.Net
             return proc.ExitCode == NetshExitCodes.SUCCEEDED ?
                 NetshExitCodes.SUCCEEDED : NetshExitCodes.COMMAND_ERROR;
         }
+
         #endregion
 
         #region SetAddresses - IPアドレス関連情報設定
+
         /// <summary>
         /// ネットワークアダプタ情報に基づき、
         /// DHCP使用有無、IPアドレス、サブネットマスク、デフォルトゲートウェイを設定します。
@@ -222,9 +238,11 @@ namespace SO.Library.Net
 
             return DoNetSh(arg.ToString());
         }
+
         #endregion
 
         #region SetPrimaryDns - 優先DNSサーバ情報設定
+
         /// <summary>
         /// ネットワークアダプタ情報に基づき、
         /// DHCP使用有無、優先DNSサーバ情報を設定します。
@@ -251,9 +269,11 @@ namespace SO.Library.Net
 
             return DoNetSh(arg.ToString());
         }
+
         #endregion
 
         #region SetSecondaryDns - 代替DNSサーバ情報設定
+
         /// <summary>
         /// ネットワークアダプタ情報に基づき、代替DNSサーバ情報を設定します。
         /// 既に代替DNSサーバが設定済みの場合は上書きされます。
@@ -263,7 +283,9 @@ namespace SO.Library.Net
         public static int SetSecondaryDns(AdapterInfo adapter)
         {
             if (adapter.UseDnsDhcp || string.IsNullOrEmpty(adapter.SecondaryDns))
+            {
                 return NetshExitCodes.NOT_EXECUTE;
+            }
 
             var arg = new StringBuilder("interface ip add dns");
             arg.AppendFormat(" name=\"{0}\"", adapter.Name);
@@ -272,9 +294,11 @@ namespace SO.Library.Net
 
             return DoNetSh(arg.ToString());
         }
+
         #endregion
 
         #region DeleteDns - DNSサーバ情報削除
+
         /// <summary>
         /// ネットワークアダプタ内の指定されたDNSサーバ設定を削除します。
         /// </summary>
@@ -284,7 +308,9 @@ namespace SO.Library.Net
         public static int DeleteDns(AdapterInfo adapter, string address)
         {
             if (!NetworkUtilities.IsValidAddress(address))
+            {
                 throw new ArgumentException("不正な書式のDNSサーバアドレスです。");
+            }
 
             var arg = new StringBuilder("interface ip delete dns");
             arg.AppendFormat(" name=\"{0}\"", adapter.Name);
@@ -292,9 +318,11 @@ namespace SO.Library.Net
 
             return DoNetSh(arg.ToString());
         }
+
         #endregion
 
         #region DeleteAllDns - 全DNSサーバ情報削除
+
         /// <summary>
         /// ネットワークアダプタの全てのDNSサーバ設定を削除します。
         /// </summary>
@@ -308,13 +336,14 @@ namespace SO.Library.Net
 
             return DoNetSh(arg.ToString());
         }
+
         #endregion
 
         #endregion
     }
-    #endregion
 
     #region class NetshExitCodes - netshコマンド戻り値定義クラス
+
     /// <summary>
     /// netshコマンド戻り値定義クラス
     /// </summary>
@@ -322,14 +351,19 @@ namespace SO.Library.Net
     {
         /// <summary>コマンド正常終了</summary>
         public const int SUCCEEDED = 0;
+
         /// <summary>コマンド異常終了</summary>
         public const int COMMAND_ERROR = 1;
+
         /// <summary>コマンドを実行せず終了</summary>
         public const int NOT_EXECUTE = -100;
+
         /// <summary>プロセス開始失敗</summary>
         public const int PROCESS_START_ERROR = -200;
+
         /// <summary>プロセスタイムアウト</summary>
         public const int PROCESS_TIMEOUT = -300;
     }
+
     #endregion
 }

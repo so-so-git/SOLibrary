@@ -6,7 +6,6 @@ namespace SO.Library.Forms
     /// <summary>
     /// 共通ユーザ入力ダイアログクラス
     /// </summary>
-    /// <seealso cref="System.Windows.Forms.Form"/>
     public partial class CommonInputDialog : Form
     {
         #region インスタンス変数
@@ -27,7 +26,7 @@ namespace SO.Library.Forms
         }
 
         /// <summary>
-        /// 入力チェックフラグを取得・設定します。
+        /// 入力チェックフラグを取得または設定します。
         /// </summary>
         public bool IsInputCheck
         {
@@ -38,6 +37,7 @@ namespace SO.Library.Forms
         #endregion
 
         #region コンストラクタ
+
         /// <summary>
         /// ダイアログタイトル、説明文言付きのコンストラクタです。
         /// </summary>
@@ -115,9 +115,11 @@ namespace SO.Library.Forms
             txtInput.Text = initialValue;
             txtInput.SelectAll();
         }
+
         #endregion
 
         #region IsValidInput - 入力チェック
+
         /// <summary>
         /// 入力チェックを実施します。
         /// ユーザからの何らかの入力が有る場合のみチェックOKとなります。
@@ -135,11 +137,14 @@ namespace SO.Library.Forms
                 FormUtilities.ShowErrorMessage("未入力です。");
                 return false;
             }
+
             return true;
         }
+
         #endregion
 
         #region Show - モーダルダイアログとして表示
+
         /// <summary>
         /// (Form.Show()を隠蔽します)
         /// ダイアログをモーダル状態で表示します。
@@ -162,9 +167,11 @@ namespace SO.Library.Forms
             // 必ずモーダルダイアログとして表示
             return ShowDialog(owner);
         }
+
         #endregion
 
         #region btnOk_Click - OKボタン押下時
+
         /// <summary>
         /// OKボタン押下時の処理です。
         /// 入力チェックを実施し、OKなら呼出元へ制御を返します。
@@ -176,6 +183,7 @@ namespace SO.Library.Forms
             // 入力チェック、相関チェックOKなら呼出元へOKを返す
             if (IsValidInput()) this.DialogResult = DialogResult.OK;
         }
+
         #endregion
     }
 }

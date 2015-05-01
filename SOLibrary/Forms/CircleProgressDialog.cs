@@ -19,11 +19,13 @@ namespace SO.Library.Forms
 
         /// <summary>規定のアニメーション間隔</summary>
         private const int DEFAULT_CIRCLE_RADIUS = 50;
+
         /// <summary>規定の表示更新間隔</summary>
         private const int DEFAULT_INTERVAL = 100;
 
         /// <summary>プログレスサークルを構成する部品の数</summary>
         private const int PARTS_COUNT = 8;
+
         /// <summary>プログレスサークルを構成する部品の規定の半径</summary>
         private const int DEFAULT_PARTS_RADIUS = 10;
 
@@ -36,11 +38,13 @@ namespace SO.Library.Forms
 
         /// <summary>プログレスサークルを構成する部品の位置の循環リスト</summary>
         private CirculateList<PointF> _partsPoints = new CirculateList<PointF>(PARTS_COUNT);
+
         /// <summary>プログレスサークルを構成する部品の半径</summary>
         private int _partsRadius = DEFAULT_PARTS_RADIUS;
 
         /// <summary>プログレスサークルを構成する部品の描画数</summary>
         private int _drawNumber = 0;
+
         /// <summary>プログレスサークルを構成する部品の透過率の段階</summary>
         private int _opacityStep = 6;
 
@@ -52,12 +56,12 @@ namespace SO.Library.Forms
         #region プロパティ
 
         /// <summary>
-        /// プログレスサークルの半径を取得・設定します。
+        /// プログレスサークルの半径を取得または設定します。
         /// </summary>
         public int CircleRadius { get; set; }
 
         /// <summary>
-        /// プログレスサークルを構成する部品の表示更新の間隔(ミリ秒)を取得・設定します。
+        /// プログレスサークルを構成する部品の表示更新の間隔(ミリ秒)を取得または設定します。
         /// </summary>
         public int Interval { get; set; }
 
@@ -101,11 +105,13 @@ namespace SO.Library.Forms
             // 表示時のサイズを基に各パラメータを初期化
             _centerPoint = new Point(Size.Width / 2, Size.Height / 2);
 
-            // 各構成部品の位置を算出
             double offsetRad = -90 * Math.PI / 180; // 12時方向を角度0とする為のオフセット
             double partsDeg = 360.0 / PARTS_COUNT;
+
             _partsPoints.Clear();
-            for (int i = 0; i < PARTS_COUNT; ++i)
+
+            // 各構成部品の位置を算出
+            for (int i = 0; i < PARTS_COUNT; i++)
             {
                 double rad = partsDeg * i * Math.PI / 180 + offsetRad;
 
@@ -148,7 +154,8 @@ namespace SO.Library.Forms
 
                     int perAlpha = 255 / _opacityStep;
                     float partsSize = _partsRadius * 2;
-                    for (int i = 0; i <= _drawNumber; ++i)
+
+                    for (int i = 0; i <= _drawNumber; i++)
                     {
                         int alpha = Math.Max(0, 255 - i * perAlpha);
 
@@ -157,9 +164,12 @@ namespace SO.Library.Forms
                         g.FillEllipse(brush, point.X, point.Y, partsSize, partsSize);
                     }
 
-                    if (_drawNumber < _opacityStep) ++_drawNumber;
+                    if (_drawNumber < _opacityStep)
+                    {
+                        _drawNumber++;
+                    }
 
-                    ++_partsPoints.CurrentPosition;
+                    _partsPoints.CurrentPosition++;
 
                     Thread.Sleep(Interval);
                 }

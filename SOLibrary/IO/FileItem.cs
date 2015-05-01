@@ -14,14 +14,14 @@ namespace SO.Library.IO
     {
         #region プロパティ
 
-        /// <summary>項目名を取得・設定します。</summary>
+        /// <summary>項目名を取得または設定します。</summary>
         public string Name { get; set; }
 
-        /// <summary>項目値を取得・設定します。</summary>
+        /// <summary>項目値を取得または設定します。</summary>
         public string Value { get; set; }
 
         /// <summary>
-        /// 項目タイプを取得・設定します。
+        /// 項目タイプを取得または設定します。
         /// 未設定の場合はUndefinedが返されます。
         /// </summary>
         public FileItemType ItemType { get; set; }
@@ -41,6 +41,7 @@ namespace SO.Library.IO
         #endregion
 
         #region コンストラクタ
+
         /// <summary>
         /// 規定の初期値でインスタンスを生成します。
         /// </summary>
@@ -72,9 +73,11 @@ namespace SO.Library.IO
             ItemType = type;
             Value = value;
         }
+
         #endregion
 
         #region ValidateType - 型チェック
+
         /// <summary>
         /// Valueプロパティの値が、Typeプロパティで指定された型として妥当かをチェックします。
         /// Valueプロパティの値がnullの場合、Typeプロパティの値がUndefinedの場合はfalseが返されます。
@@ -82,7 +85,10 @@ namespace SO.Library.IO
         /// <returns>true:妥当な値 / false:不正な値</returns>
         public bool ValidateType()
         {
-            if (Value == null) return false;
+            if (Value == null)
+            {
+                return false;
+            }
 
             switch (ItemType)
             {
@@ -113,6 +119,7 @@ namespace SO.Library.IO
                     return false;
             }
         }
+
         #endregion
     }
 }

@@ -25,7 +25,8 @@ namespace SO.Library.IO
         /// デフォルトのコンストラクタです。
         /// </summary>
         /// <param name="logPath">ログファイルパス</param>
-        public HtmlLogger(string logPath) : base(logPath, Encoding.GetEncoding("Shift_JIS")) { }
+        public HtmlLogger(string logPath)
+            : base(logPath, Encoding.GetEncoding("Shift_JIS")) { }
 
         #endregion
 
@@ -229,9 +230,13 @@ namespace SO.Library.IO
             else
             {
                 if (string.IsNullOrEmpty(methodName))
+                {
                     logPlace = className;
+                }
                 else
+                {
                     logPlace = string.Format("{0}#{1}", className, methodName);
+                }
             }
 
             var sb = new StringBuilder();

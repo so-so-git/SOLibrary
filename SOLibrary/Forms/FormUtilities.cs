@@ -21,6 +21,7 @@ namespace SO.Library.Forms
         #endregion
 
         #region ShowMessage - メッセージダイアログ表示
+
         /// <summary>
         /// 指定されたIDを持つメッセージをダイアログで表示します。
         /// </summary>
@@ -30,11 +31,14 @@ namespace SO.Library.Forms
         public static DialogResult ShowMessage(string messageId, params string[] args)
         {
             MessageInfo info = MessageXml.GetMessageInfo(messageId, args);
+
             return MessageBox.Show(info.message, info.caption, info.buttons, info.icon);
         }
+
         #endregion
 
         #region ShowInformationMessage - 情報ダイアログ表示
+
         /// <summary>
         /// 指定されたメッセージを情報ダイアログで表示します。
         /// </summary>
@@ -54,9 +58,11 @@ namespace SO.Library.Forms
         {
             return MessageBox.Show(message, "Information", buttons, MessageBoxIcon.Information);
         }
+
         #endregion
 
         #region ShowWarningMessage - 警告ダイアログ表示
+
         /// <summary>
         /// OKボタンのみの表示で、指定されたメッセージを警告ダイアログで表示します。
         /// </summary>
@@ -76,9 +82,11 @@ namespace SO.Library.Forms
         {
             return MessageBox.Show(message, "Warning", buttons, MessageBoxIcon.Warning);
         }
+
         #endregion
 
         #region ShowErrorMessage - エラーダイアログ表示
+
         /// <summary>
         /// OKボタンのみの表示で、指定されたメッセージを警告ダイアログで表示します。
         /// </summary>
@@ -98,9 +106,11 @@ namespace SO.Library.Forms
         {
             return MessageBox.Show(message, "Error", buttons, MessageBoxIcon.Error);
         }
+
         #endregion
 
         #region ShowQuestionMessage - 確認ダイアログ表示
+
         /// <summary>
         /// はい・いいえボタンのみの表示で、指定されたメッセージを確認ダイアログで表示します。
         /// </summary>
@@ -121,9 +131,11 @@ namespace SO.Library.Forms
         {
             return MessageBox.Show(message, "Question", buttons, MessageBoxIcon.Question);
         }
+
         #endregion
 
         #region ShowExceptionMessage - 例外内容通知ダイアログ表示
+
         /// <summary>
         /// 例外内容通知ダイアログを表示します。
         /// </summary>
@@ -187,9 +199,11 @@ namespace SO.Library.Forms
             // メッセージボックスでエラー内容通知
             MessageBox.Show(errMsg.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
+
         #endregion
 
         #region GetMenuItem - 指定した名称を持つメニューアイテムを取得
+
         /// <summary>
         /// 指定した名前を持つメニューアイテムを取得します。
         /// メニューアイテムの階層はMENU_PATH_SEPARATORで区切って指定します。
@@ -223,9 +237,10 @@ namespace SO.Library.Forms
             {
                 var item = items[name] as ToolStripMenuItem;
                 return item == null ? null :
-                        GetMenuItem<T>(item.DropDownItems, pathName.Substring(pos + 1));
+                    GetMenuItem<T>(item.DropDownItems, pathName.Substring(pos + 1));
             }
         }
+
         #endregion
     }
 }

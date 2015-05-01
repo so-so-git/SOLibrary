@@ -11,6 +11,7 @@ namespace SO.Library.IO
     public static class Cryptgrapher
     {
         #region Encrypt - 平文文字列の暗号化
+
         /// <summary>
         /// 平文文字列の暗号化を行ないます。
         /// </summary>
@@ -40,9 +41,11 @@ namespace SO.Library.IO
                 return Convert.ToBase64String(ms.ToArray());
             }
         }
+
         #endregion
 
         #region Decrypt - 暗号化文字列の復号
+
         /// <summary>
         /// 暗号化された文字列を復号します。
         /// </summary>
@@ -68,9 +71,11 @@ namespace SO.Library.IO
                 return sr.ReadToEnd();
             }
         }
+
         #endregion
 
         #region AdjustByteLength - バイト配列内容を規定の長さに併せて調整
+
         /// <summary>
         /// バイト配列の配列長を、指定された長さに調整します。
         /// </summary>
@@ -79,7 +84,7 @@ namespace SO.Library.IO
         /// <returns>長さを調整されたバイト配列</returns>
         private static byte[] AdjustByteLength(byte[] source, int length)
         {
-            byte[] ret = new byte[length];
+            var ret = new byte[length];
             if (source.Length <= length)    // 長さが足りない場合
             {
                 // 元データの先頭に繰り返し数を追加し、元データでパディングする
@@ -87,11 +92,16 @@ namespace SO.Library.IO
                 for (int i = 0; i < ret.Length; ++i)
                 {
                     for (int j = 0; j < source.Length && i < ret.Length; ++j, ++i)
+                    {
                         ret[i] = source[j];
+                    }
 
                     if (i < ret.Length)
                     {
-                        if (turn > byte.MaxValue) turn = byte.MinValue;
+                        if (turn > byte.MaxValue)
+                        {
+                            turn = byte.MinValue;
+                        }
                         ret[i++] = turn;
                     }
 
@@ -101,11 +111,17 @@ namespace SO.Library.IO
             {
                 // 超過している分のバイトで、先頭のバイトに対しビットXORを掛ける
                 for (int i = 0; i < source.Length; ++i)
+                {
                     for (int j = 0; j < ret.Length && i < source.Length; ++i, ++j)
+                    {
                         ret[j] ^= source[i];
+                    }
+                }
             }
+
             return ret;
         }
+
         #endregion
 
         #region GetFileMD5 - ファイルのMD5ハッシュを取得
@@ -118,11 +134,10 @@ namespace SO.Library.IO
         public static string GetFileMD5(string filePath)
         {
             MD5 md5 = MD5.Create();
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
             using (var fs = new FileStream(filePath, FileMode.Open, FileAccess.Read))
             {
-                Array.ForEach(md5.ComputeHash(fs),
-                    b => sb.Append(b.ToString("x2")));
+                Array.ForEach(md5.ComputeHash(fs), b => sb.Append(b.ToString("x2")));
             }
 
             return sb.ToString();
@@ -150,10 +165,9 @@ namespace SO.Library.IO
         public static string GetBytesMD5(byte[] data)
         {
             MD5 md5 = MD5.Create();
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
 
-            Array.ForEach(md5.ComputeHash(data),
-                b => sb.Append(b.ToString("x2")));
+            Array.ForEach(md5.ComputeHash(data), b => sb.Append(b.ToString("x2")));
 
             return sb.ToString();
         }

@@ -4,7 +4,6 @@ using System.Linq;
 
 namespace SO.Library.Text
 {
-    #region class StringUtilities - 文字列汎用機能提供クラス
     /// <summary>
     /// 文字列汎用機能提供クラス
     /// </summary>
@@ -39,6 +38,7 @@ namespace SO.Library.Text
         #region === 文字列エスケープ系処理 ===
 
         #region enum EscapeType - エスケープタイプ列挙体
+
         /// <summary>
         /// エスケープタイプ列挙体
         /// </summary>
@@ -51,9 +51,11 @@ namespace SO.Library.Text
             /// <summary>CSVテキスト</summary>
             CSV,
         }
+
         #endregion
 
         #region enum EscapeDirection - エスケープ処理方向列挙体
+
         /// <summary>
         /// エスケープ処理方向列挙体
         /// </summary>
@@ -64,9 +66,11 @@ namespace SO.Library.Text
             /// <summary>アンエスケープ</summary>
             Unescape,
         }
+
         #endregion
 
         #region EscapeSqlText - SQLテキストエスケープ
+
         /// <summary>
         /// SQLテキストのエスケープ処理を行います。
         /// </summary>
@@ -76,9 +80,11 @@ namespace SO.Library.Text
         {
             return EscapeCommon(sql, EscapeType.SQL, EscapeDirection.Escape);
         }
+
         #endregion
 
         #region UnescapeSqlText - SQLテキストアンエスケープ
+
         /// <summary>
         /// SQLテキストのアンエスケープ処理を行います。
         /// </summary>
@@ -88,9 +94,11 @@ namespace SO.Library.Text
         {
             return EscapeCommon(sql, EscapeType.SQL, EscapeDirection.Unescape);
         }
+
         #endregion
 
         #region EscapeHtmlText - HTMLテキストエスケープ
+
         /// <summary>
         /// HTMLテキストのエスケープ処理を行います。
         /// </summary>
@@ -100,9 +108,11 @@ namespace SO.Library.Text
         {
             return EscapeCommon(html, EscapeType.HTML, EscapeDirection.Escape);
         }
+
         #endregion
 
         #region UnescapeHtmlText - HTMLテキストアンエスケープ
+
         /// <summary>
         /// HTMLテキストのアンエスケープ処理を行います。
         /// </summary>
@@ -112,9 +122,11 @@ namespace SO.Library.Text
         {
             return EscapeCommon(html, EscapeType.HTML, EscapeDirection.Unescape);
         }
+
         #endregion
 
         #region EscapeCsvText - CSVテキストエスケープ
+
         /// <summary>
         /// CSVテキストのエスケープ処理を行います。
         /// </summary>
@@ -124,9 +136,11 @@ namespace SO.Library.Text
         {
             return EscapeCommon(csv, EscapeType.CSV, EscapeDirection.Escape);
         }
+
         #endregion
 
         #region UnescapeCsvText - CSVテキストアンエスケープ
+
         /// <summary>
         /// CSVテキストのアンエスケープ処理を行います。
         /// </summary>
@@ -136,9 +150,11 @@ namespace SO.Library.Text
         {
             return EscapeCommon(csv, EscapeType.CSV, EscapeDirection.Unescape);
         }
+
         #endregion
 
         #region EscapeCommon - エスケープ系共通処理
+
         /// <summary>
         /// エスケープ系機能の共通処理です。
         /// </summary>
@@ -186,11 +202,13 @@ namespace SO.Library.Text
 
             return ret;
         }
+
         #endregion
 
         #endregion
 
         #region PaddingByZero - 指定桁0埋め
+
         /// <summary>
         /// 整数の先頭を指定された桁数まで0で埋めた文字列を返します。
         /// </summary>
@@ -241,9 +259,11 @@ namespace SO.Library.Text
 
             return ret.ToString();
         }
+
         #endregion
 
         #region PaddingBySpace - 指定桁スペース埋め
+
         /// <summary>
         /// 整数の末尾を指定された桁数まで半角スペースで埋めた文字列を返します。
         /// </summary>
@@ -294,9 +314,11 @@ namespace SO.Library.Text
 
             return ret.ToString();
         }
+
         #endregion
 
         #region GetByteCount - バイト数取得
+
         /// <summary>
         /// 指定された文字列のバイト数を取得します。
         /// </summary>
@@ -306,9 +328,11 @@ namespace SO.Library.Text
         {
             return Encoding.GetEncoding(932).GetByteCount(val);
         }
+
         #endregion
 
         #region IsNarrow - 半角チェック
+
         /// <summary>
         /// 指定された文字列が全て半角かどうかのチェックを行います。
         /// </summary>
@@ -318,9 +342,11 @@ namespace SO.Library.Text
         {
             return GetByteCount(val) == val.Length;
         }
+
         #endregion
 
         #region IsWide - 全角チェック
+
         /// <summary>
         /// 指定された文字列が全て全角かどうかのチェックを行います。
         /// </summary>
@@ -330,11 +356,12 @@ namespace SO.Library.Text
         {
             return GetByteCount(val) == val.Length * 2;
         }
+
         #endregion
     }
-    #endregion
 
     #region enum PaddingOption - 指定桁数埋め方向指定列挙体
+
     /// <summary>
     /// 指定桁数埋め方向指定列挙体
     /// </summary>
@@ -345,5 +372,6 @@ namespace SO.Library.Text
         /// <summary>末尾を埋める</summary>
         After,
     }
+
     #endregion
 }

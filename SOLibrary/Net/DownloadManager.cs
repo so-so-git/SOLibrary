@@ -18,7 +18,7 @@ namespace SO.Library.Net
 
         #endregion
 
-        #region クラス変数
+        #region インスタンス変数
 
         /// <summary>非同期ウェブクライアントのリスト</summary>
         private static List<WebClient> _asyncWcList = new List<WebClient>();
@@ -36,8 +36,6 @@ namespace SO.Library.Net
         }
 
         #endregion
-
-        #region メソッド
 
         #region 同期処理
 
@@ -180,8 +178,6 @@ namespace SO.Library.Net
             _asyncWcList.Remove(wc);
             wc.Dispose();
         }
-
-        #endregion
 
         #endregion
     }

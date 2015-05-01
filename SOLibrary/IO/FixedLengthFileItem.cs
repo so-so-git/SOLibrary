@@ -22,7 +22,7 @@ namespace SO.Library.IO
         #region プロパティ
 
         /// <summary>
-        /// 定義上の項目長(バイト)を取得・設定します。
+        /// 定義上の項目長(バイト)を取得または設定します。
         /// 1未満の値は指定出来ません。
         /// 未設定の場合は0が返されます。
         /// </summary>
@@ -33,8 +33,10 @@ namespace SO.Library.IO
             set
             {
                 if (value < 1)
+                {
                     throw new ArgumentOutOfRangeException(
                         "Lengthプロパティに1未満の値は指定出来ません。");
+                }
 
                 _definedLength = value;
             }
@@ -43,6 +45,7 @@ namespace SO.Library.IO
         #endregion
 
         #region コンストラクタ
+
         /// <summary>
         /// 規定の初期値でインスタンスを生成します。
         /// </summary>
@@ -72,9 +75,11 @@ namespace SO.Library.IO
         {
             DefinedLength = length;
         }
+
         #endregion
 
         #region ValidateLength - 値長チェック
+
         /// <summary>
         /// Valueプロパティの長さ(バイト)が、Lengthプロパティで指定された長さと等しいかをチェックします。
         /// Valueプロパティの値がnullの場合、Lengthプロパティが未設定の場合はfalseが返されます。
@@ -84,6 +89,7 @@ namespace SO.Library.IO
         {
             return (Value == null) ? false : (Length == DefinedLength);
         }
+
         #endregion
     }
 }

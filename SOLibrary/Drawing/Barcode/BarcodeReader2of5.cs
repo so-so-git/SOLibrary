@@ -28,8 +28,9 @@ namespace SO.Library.Drawing.Barcode
         #endregion
 
         #region プロパティ
+
         /// <summary>
-        /// 表現桁数を取得・設定します。
+        /// 表現桁数を取得または設定します。
         /// </summary>
         /// <remarks>
         /// 指定された値が1未満の場合は1に補正されます。
@@ -39,9 +40,11 @@ namespace SO.Library.Drawing.Barcode
             get { return _digit; }
             set { _digit = value < 1 ? 1 : value; }
         }
+
         #endregion
 
         #region コンストラクタ
+
         /// <summary>
         /// 規定のコンストラクタです。
         /// </summary>
@@ -49,9 +52,11 @@ namespace SO.Library.Drawing.Barcode
         {
             InitializeBarcodeFormatInfo(out _formatInfo);
         }
+
         #endregion
 
         #region ReadBarcode - バーコード解析
+
         /// <summary>
         /// 指定画像のバーコードを解析します。
         /// 不正なバーコードの場合、nullを返します。
@@ -64,23 +69,37 @@ namespace SO.Library.Drawing.Barcode
 
             // スタートコードの開始座標を検索
             int x, y;
-            if (!ResetBarStartPoint(out x, out y)) return null;
+            if (!ResetBarStartPoint(out x, out y))
+            {
+                return null;
+            }
 
             // スタートコードの終了までを解析
-            if (!ReadStartPart(ref x, y)) return null;
+            if (!ReadStartPart(ref x, y))
+            {
+                return null;
+            }
 
             // 値部の終了までを解析
             string barcode = ReadValuePart(ref x, y);
-            if (barcode == null) return null;
+            if (barcode == null)
+            {
+                return null;
+            }
 
             // ストップコードを解析
-            if (!ReadStopPart(ref x, y)) return null;
+            if (!ReadStopPart(ref x, y))
+            {
+                return null;
+            }
 
             return barcode;
         }
+
         #endregion
 
         #region IsBlackPixel - 指定された座標色が黒かどうかを判定
+
         /// <summary>
         /// 指定された座標の色が黒かどうかを判定します。
         /// </summary>
@@ -94,9 +113,11 @@ namespace SO.Library.Drawing.Barcode
 
             return colorSum == 0;
         }
+
         #endregion
 
         #region IsWide - 指定幅が太い方の黒バーの幅であるかを判定
+
         /// <summary>
         /// 指定された幅が、太い方の黒バーの幅であるかを判定します。
         /// </summary>
@@ -110,9 +131,11 @@ namespace SO.Library.Drawing.Barcode
             return Math.Abs(weight - _blackWideWeight)
                 < Math.Abs(weight - _blackNarrowWeight);
         }
+
         #endregion
 
         #region IsNarrow - 指定幅が細い方の黒バーの幅であるかを判定
+
         /// <summary>
         /// 指定された幅が、細い方の黒バーの幅であるかを判定します。
         /// </summary>
@@ -126,6 +149,7 @@ namespace SO.Library.Drawing.Barcode
             return Math.Abs(weight - _blackWideWeight)
                 > Math.Abs(weight - _blackNarrowWeight);
         }
+
         #endregion
 
         #region 抽象メソッド

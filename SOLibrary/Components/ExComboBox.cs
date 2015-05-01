@@ -10,7 +10,7 @@ namespace SO.Library.Components
     /// </summary>
     public class ExComboBox : ComboBox
     {
-        #region メンバ変数
+        #region インスタンス変数
 
         /// <summary>非読み取り専用時の背景色</summary>
         private Color _storeBackColor;
@@ -29,7 +29,8 @@ namespace SO.Library.Components
 
         #endregion
 
-        #region ReadOnlyプロパティ - 読み取り専用設定
+        #region プロパティ
+
         /// <summary>
         /// コントロールを読み取り専用とするかどうかを取得または設定します。
         /// </summary>
@@ -72,9 +73,7 @@ namespace SO.Library.Components
                 }
             }
         }
-        #endregion
 
-        #region ReadOnlyBackColorプロパティ - 読み取り専用時背景色
         /// <summary>
         /// 読み取り専用時の背景色を取得または設定します。
         /// </summary>
@@ -88,12 +87,12 @@ namespace SO.Library.Components
             {
                 _readOnlyBackColor = value;
                 if (_readOnly && Enabled)
+                {
                     BackColor = _readOnlyBackColor;
+                }
             }
         }
-        #endregion
 
-        #region ReadOnlyForeColorプロパティ - 読み取り専用時の前景色
         /// <summary>
         /// 読み取り専用時の前景色を取得または設定します。
         /// </summary>
@@ -107,12 +106,16 @@ namespace SO.Library.Components
             {
                 _readOnlyForeColor = value;
                 if (_readOnly && Enabled)
+                {
                     ForeColor = _readOnlyForeColor;
+                }
             }
         }
+
         #endregion
 
         #region コンストラクタ
+
         /// <summary>
         /// デフォルトのコンストラクタです。
         /// </summary>
@@ -121,9 +124,11 @@ namespace SO.Library.Components
             _storeBackColor = BackColor;
             _storeForeColor = ForeColor;
         }
+
         #endregion
 
         #region OnKeyDown - キーダウン時
+
         /// <summary>
         /// コントロール上でキーダウンされた際に実行される処理です。
         /// 読み取り専用時にキー入力を無効化します。
@@ -153,9 +158,11 @@ namespace SO.Library.Components
                     break;
             }
         }
+
         #endregion
 
         #region OnKeyPress - キープレス時
+
         /// <summary>
         /// コントロール上でキープレスされた際に実行される処理です。
         /// 読み取り専用時にキー入力を無効化します。
@@ -169,10 +176,14 @@ namespace SO.Library.Components
                 return;
             }
 
-            if (!char.IsControl(e.KeyChar)) e.Handled = true;
+            if (!char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
 
             base.OnKeyPress(e);
         }
+
         #endregion
     }
 }

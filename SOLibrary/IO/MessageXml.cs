@@ -8,7 +8,6 @@ using System.Xml.Linq;
 
 namespace SO.Library.IO
 {
-    #region class MessageXml - メッセージ定義XML管理クラス
     /// <summary>
     /// メッセージ定義XML管理クラス
     /// </summary>
@@ -49,6 +48,7 @@ namespace SO.Library.IO
         #endregion
 
         #region 静的コンストラクタ
+
         /// <summary>
         /// 静的コンストラクタです。
         /// </summary>
@@ -60,9 +60,11 @@ namespace SO.Library.IO
             ButtonsAttribute = "buttons";
             IconAttribute = "icon";
         }
+
         #endregion
 
         #region GetMessageInfo - アプリケーションメッセージ情報取得
+
         /// <summary>
         /// 指定されたIDのアプリケーションメッセージ情報を取得します。
         /// </summary>
@@ -72,7 +74,10 @@ namespace SO.Library.IO
         public static MessageInfo GetMessageInfo(string messageId, params string[] args)
         {
             if (string.IsNullOrEmpty(MessageFilePath))
-                throw new InvalidOperationException("メッセージXMLファイルのパスが指定されていません。");
+            {
+                throw new InvalidOperationException(
+                    "メッセージXMLファイルのパスが指定されていません。");
+            }
 
             MessageInfo msgInfo;
             msgInfo.id = messageId;
@@ -91,33 +96,46 @@ namespace SO.Library.IO
             // エスケープシーケンスが含まれるか検査し、あるならばエスケープ文字をアンエスケープする
             string msg;
             if (elm.Message.IndexOf("\\") > -1)
+            {
                 msg = Regex.Unescape(elm.Message.Trim());
+            }
             else
+            {
                 msg = elm.Message.Trim();
+            }
 
             // 第二引数以降の引数の数とメッセージ中のプレースホルダの数を比較
             MatchCollection phs = Regex.Matches(msg, "[{][0-9]*[}]");
 
             var distinct = new List<string>();
             foreach (Match ph in phs)
-                if (distinct.Count == 0 || !distinct.Contains(ph.Value)) distinct.Add(ph.Value);
+            {
+                if (distinct.Count == 0 || !distinct.Contains(ph.Value))
+                {
+                    distinct.Add(ph.Value);
+                }
+            }
 
             if (distinct.Count != args.Length)
+            {
                 throw new ArgumentException("メッセージ中の置換対象と引数の数が一致しません。");
+            }
 
             msgInfo.message = string.Format(msg, args);
 
             msgInfo.caption = elm.Caption;
-            msgInfo.buttons = (MessageBoxButtons)typeof(MessageBoxButtons)
-                    .GetField(elm.Buttons).GetValue(null);
-            msgInfo.icon = (MessageBoxIcon)typeof(MessageBoxIcon)
-                    .GetField(elm.Icon).GetValue(null);
+            msgInfo.buttons = (MessageBoxButtons)
+                typeof(MessageBoxButtons).GetField(elm.Buttons).GetValue(null);
+            msgInfo.icon = (MessageBoxIcon)
+                typeof(MessageBoxIcon).GetField(elm.Icon).GetValue(null);
 
             return msgInfo;
         }
+
         #endregion
 
         #region ShowMessageById - メッセージIDを指定しアプリケーションメッセージ表示
+
         /// <summary>
         /// メッセージIDを指定し、アプリケーションメッセージダイアログを表示します。
         /// </summary>
@@ -127,6 +145,7 @@ namespace SO.Library.IO
         public static DialogResult ShowMessageById(string messageId, params string[] messageParams)
         {
             MessageInfo msgInfo = MessageXml.GetMessageInfo(messageId, messageParams);
+
             return MessageBox.Show(msgInfo.message, msgInfo.caption, msgInfo.buttons, msgInfo.icon);
         }
 
@@ -141,6 +160,7 @@ namespace SO.Library.IO
                                                params string[] messageParams)
         {
             MessageInfo msgInfo = MessageXml.GetMessageInfo(messageId, messageParams);
+
             return MessageBox.Show(msgInfo.message, msgInfo.caption, buttons, msgInfo.icon);
         }
 
@@ -156,13 +176,15 @@ namespace SO.Library.IO
                                                MessageBoxIcon icon, params string[] messageParams)
         {
             MessageInfo msgInfo = MessageXml.GetMessageInfo(messageId, messageParams);
+
             return MessageBox.Show(msgInfo.message, msgInfo.caption, buttons, icon);
         }
+
         #endregion
     }
-    #endregion
 
     #region struct MessageInfo - アプリケーションメッセージ情報構造体
+
     /// <summary>
     /// アプリケーションメッセージ情報構造体
     /// </summary>
@@ -170,14 +192,19 @@ namespace SO.Library.IO
     {
         /// <summary>メッセージID</summary>
         public string id;
+
         /// <summary>メッセージ本文</summary>
         public string message;
+
         /// <summary>メッセージダイアログタイトル</summary>
         public string caption;
+
         /// <summary>ダイアログボタン構成</summary>
         public MessageBoxButtons buttons;
+
         /// <summary>ダイアログアイコン種別</summary>
         public MessageBoxIcon icon;
     }
+
     #endregion
 }

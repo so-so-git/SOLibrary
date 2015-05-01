@@ -23,20 +23,20 @@ namespace SO.Library.Net
         #region プロパティ
 
         /// <summary>
-        /// 処理完了後に接続を閉じるかを取得・設定します。
+        /// 処理完了後に接続を閉じるかを取得または設定します。
         /// 規定値はfalseです。
         /// </summary>
         public static bool KeepAlive { get; set; }
 
         /// <summary>
-        /// パッシブモードで転送するかを取得・設定します。
+        /// パッシブモードで転送するかを取得または設定します。
         /// falseが設定されている場合はアクティブモードで転送を行ないます。
         /// 規定値はfalseです。
         /// </summary>
         public static bool UsePassive { get; set; }
 
         /// <summary>
-        /// FTPサーバの文字コードを取得・設定します。
+        /// FTPサーバの文字コードを取得または設定します。
         /// 規定値はUTF8です。
         /// </summary>
         public static Encoding ServerEncoding { get; set; }
@@ -54,6 +54,7 @@ namespace SO.Library.Net
         #endregion
 
         #region 静的コンストラクタ
+
         /// <summary>
         /// 静的コンストラクタです。
         /// </summary>
@@ -63,9 +64,11 @@ namespace SO.Library.Net
             UsePassive = false;
             ServerEncoding = Encoding.UTF8;
         }
+
         #endregion
 
         #region UploadFile - ファイルアップロード
+
         /// <summary>
         /// FTP転送でファイルをアップロードします。
         /// </summary>
@@ -85,7 +88,7 @@ namespace SO.Library.Net
             {
                 // FtpWebRequestの作成
                 FtpWebRequest request = CreateRequest(
-                        WebRequestMethods.Ftp.UploadFile, uploadUri, ftpUserId, ftpPassword);
+                    WebRequestMethods.Ftp.UploadFile, uploadUri, ftpUserId, ftpPassword);
 
                 // モード設定
                 request.UseBinary = useBinary;
@@ -96,12 +99,14 @@ namespace SO.Library.Net
                     var bfr = new byte[READ_BLOCK_BYTES];
                     int readLen;
                     while ((readLen = fStream.Read(bfr, 0, bfr.Length)) > 0)
+                    {
                         // 対象ファイルから読み込んだバイトをUpload用Streamに書き込み
                         upStream.Write(bfr, 0, readLen);
+                    }
                 }
 
                 // 転送結果取得
-                using (FtpWebResponse response = request.GetResponse() as FtpWebResponse)
+                using (var response = request.GetResponse() as FtpWebResponse)
                 {
                     LastStatusCode = response.StatusCode;
                     LastStatusDescription = response.StatusDescription;
@@ -119,6 +124,7 @@ namespace SO.Library.Net
         #endregion
 
         #region UploadFiles - 複数のファイルをアップロード
+
         /// <summary>
         /// FTP転送で複数のファイルをアップロードします。
         /// </summary>
@@ -140,9 +146,11 @@ namespace SO.Library.Net
 
             return ret;
         }
+
         #endregion
 
         #region DeleteFile - FTPサーバ上のファイル削除
+
         /// <summary>
         /// FTPサーバ上の指定ファイルを削除します。
         /// </summary>
@@ -159,10 +167,10 @@ namespace SO.Library.Net
             {
                 // FtpWebRequestの作成
                 FtpWebRequest request = CreateRequest(
-                        WebRequestMethods.Ftp.DeleteFile, deleteUri, ftpUserId, ftpPassword);
+                    WebRequestMethods.Ftp.DeleteFile, deleteUri, ftpUserId, ftpPassword);
 
                 // 削除実行・結果取得
-                using (FtpWebResponse response = request.GetResponse() as FtpWebResponse)
+                using (var response = request.GetResponse() as FtpWebResponse)
                 {
                     LastStatusCode = response.StatusCode;
                     LastStatusDescription = response.StatusDescription;
@@ -177,9 +185,11 @@ namespace SO.Library.Net
             return (LastStatusCode == FtpStatusCode.ClosingData ||
                     LastStatusCode == FtpStatusCode.FileActionOK);
         }
+
         #endregion
 
         #region DeleteFilesInDirectory - FTPサーバ上の指定ディレクトリ内の全ファイル削除
+
         /// <summary>
         /// FTPサーバ上の指定ディレクトリ内の全てのファイルを削除します。
         /// </summary>
@@ -196,17 +206,19 @@ namespace SO.Library.Net
             {
                 // ls用FtpWebRequestの作成
                 FtpWebRequest lsRequest = CreateRequest(
-                        WebRequestMethods.Ftp.ListDirectoryDetails, deleteDirUri, ftpUserId, ftpPassword);
+                    WebRequestMethods.Ftp.ListDirectoryDetails, deleteDirUri, ftpUserId, ftpPassword);
 
                 // ls実行・結果取得
-                using (FtpWebResponse lsResponse = lsRequest.GetResponse() as FtpWebResponse)
+                using (var lsResponse = lsRequest.GetResponse() as FtpWebResponse)
                 {
                     LastStatusCode = lsResponse.StatusCode;
                     LastStatusDescription = lsResponse.StatusDescription;
 
                     if (LastStatusCode != FtpStatusCode.OpeningData &&
-                            LastStatusCode != FtpStatusCode.DataAlreadyOpen)
+                        LastStatusCode != FtpStatusCode.DataAlreadyOpen)
+                    {
                         return false;
+                    }
 
                     // 存在する全てのファイルに対して削除処理実行
                     // (エラーが発生しても、他のファイルに対して処理継続する)
@@ -238,6 +250,7 @@ namespace SO.Library.Net
                 return false;
             }
         }
+
         #endregion
 
         #region GetFileSize - FTPサーバ上のファイルサイズ取得
