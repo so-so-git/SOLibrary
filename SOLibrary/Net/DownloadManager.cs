@@ -48,7 +48,7 @@ namespace SO.Library.Net
         {
             using (var wc = new WebClient())
             {
-                wc.Headers.Add("user-agent", USER_AGENT);
+                wc.Headers.Add(HttpRequestHeader.UserAgent, USER_AGENT);
                 wc.DownloadFile(address, filePath);
             }
         }
@@ -62,7 +62,7 @@ namespace SO.Library.Net
         {
             using (var wc = new WebClient())
             {
-                wc.Headers.Add("user-agent", USER_AGENT);
+                wc.Headers.Add(HttpRequestHeader.UserAgent, USER_AGENT);
                 return wc.DownloadData(address);
             }
         }
@@ -85,7 +85,7 @@ namespace SO.Library.Net
         {
             var uri = new Uri(address);
             var wc = new WebClient();
-            wc.Headers.Add("user-agent", USER_AGENT);
+            wc.Headers.Add(HttpRequestHeader.UserAgent, USER_AGENT);
 
             if (progressChanged != null)
                 wc.DownloadProgressChanged += progressChanged;
@@ -116,7 +116,7 @@ namespace SO.Library.Net
         {
             var uri = new Uri(address);
             var wc = new WebClient();
-            wc.Headers.Add("user-agent", USER_AGENT);
+            wc.Headers.Add(HttpRequestHeader.UserAgent, USER_AGENT);
 
             if (progressChanged != null)
                 wc.DownloadProgressChanged += progressChanged;
