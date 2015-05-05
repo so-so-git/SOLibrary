@@ -20,7 +20,7 @@ namespace SO.Library.Forms
         /// <summary>
         /// ユーザが入力した文字列を取得します。
         /// </summary>
-        public string InputString
+        public virtual string InputString
         {
             get { return txtInput.Text; }
         }
@@ -28,7 +28,7 @@ namespace SO.Library.Forms
         /// <summary>
         /// 入力チェックフラグを取得または設定します。
         /// </summary>
-        public bool IsInputCheck
+        public virtual bool IsInputCheck
         {
             get { return _inputChkFlg; }
             set { _inputChkFlg = value; }
@@ -37,6 +37,15 @@ namespace SO.Library.Forms
         #endregion
 
         #region コンストラクタ
+
+        /// <summary>
+        /// 継承クラスでのデザイン表示用のコンストラクタです。
+        /// </summary>
+        protected CommonInputDialog()
+        {
+            // コンポーネント初期化
+            InitializeComponent();
+        }
 
         /// <summary>
         /// ダイアログタイトル、説明文言付きのコンストラクタです。
@@ -51,6 +60,9 @@ namespace SO.Library.Forms
             // フォームタイトル、ラベル表示初期化
             this.Text = title;
             lblInput.Text = labelText;
+
+            // 入力チェックフラグ初期化
+            _inputChkFlg = false;
         }
 
         /// <summary>
@@ -86,6 +98,9 @@ namespace SO.Library.Forms
             // フォームタイトル、ラベル表示初期化
             this.Text = title;
             lblInput.Text = labelText;
+
+            // 入力チェックフラグ初期化
+            _inputChkFlg = false;
 
             // 初期値設定
             txtInput.Text = initialValue;

@@ -92,9 +92,10 @@
 
         #endregion
 
-        private System.Windows.Forms.Label lblInput;
-        private System.Windows.Forms.TextBox txtInput;
-        private System.Windows.Forms.Button btnCancel;
-        private System.Windows.Forms.Button btnOk;
+        protected System.Windows.Forms.Label lblInput;
+        protected System.Windows.Forms.TextBox txtInput;
+        protected System.Windows.Forms.Button btnCancel;
+        protected System.Windows.Forms.Button btnOk;
+
     }
 }
