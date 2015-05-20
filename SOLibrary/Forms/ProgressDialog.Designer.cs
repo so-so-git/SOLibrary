@@ -34,26 +34,29 @@
             // 
             // barProgress
             // 
-            this.barProgress.Location = new System.Drawing.Point(12, 68);
+            this.barProgress.Location = new System.Drawing.Point(14, 85);
+            this.barProgress.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.barProgress.Name = "barProgress";
-            this.barProgress.Size = new System.Drawing.Size(288, 20);
+            this.barProgress.Size = new System.Drawing.Size(336, 25);
             this.barProgress.TabIndex = 0;
             // 
             // lblMessage
             // 
-            this.lblMessage.Location = new System.Drawing.Point(12, 12);
+            this.lblMessage.Location = new System.Drawing.Point(14, 15);
             this.lblMessage.Name = "lblMessage";
-            this.lblMessage.Size = new System.Drawing.Size(288, 48);
+            this.lblMessage.Size = new System.Drawing.Size(336, 60);
             this.lblMessage.TabIndex = 1;
             // 
             // ProgressDialog
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(314, 103);
+            this.ClientSize = new System.Drawing.Size(366, 129);
             this.Controls.Add(this.lblMessage);
             this.Controls.Add(this.barProgress);
+            this.Font = new System.Drawing.Font("Meiryo UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "ProgressDialog";

@@ -61,9 +61,10 @@ namespace SO.Library.Forms
             this.ControlBox = false;
             this.Controls.Add(this.picAnime);
             this.DoubleBuffered = true;
+            this.Font = new System.Drawing.Font("Meiryo UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "CircleProgressDialog";
-            this.Opacity = 0.5;
+            this.Opacity = 0.5D;
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
