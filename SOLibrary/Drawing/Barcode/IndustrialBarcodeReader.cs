@@ -1,7 +1,4 @@
-﻿using System;
-using System.Drawing;
-
-namespace SO.Library.Drawing.Barcode
+﻿namespace SO.Library.Drawing.Barcode
 {
     /// <summary>
     /// インダストリアル2of5形式のバーコードリーダクラス

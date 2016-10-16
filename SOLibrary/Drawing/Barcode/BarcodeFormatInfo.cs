@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace SO.Library.Drawing.Barcode
+﻿namespace SO.Library.Drawing.Barcode
 {
     /// <summary>
     /// バーコード形式情報クラス

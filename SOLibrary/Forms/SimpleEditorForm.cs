@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 using System.Text;
-using System.Reflection;
 using System.Windows.Forms;
 
 namespace SO.Library.Forms

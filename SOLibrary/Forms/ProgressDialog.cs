@@ -1,5 +1,4 @@
-﻿using System;
-using System.Drawing;
+﻿using System.Drawing;
 using System.Windows.Forms;
 
 namespace SO.Library.Forms
@@ -96,8 +95,9 @@ namespace SO.Library.Forms
         #endregion
 
         #region コンストラクタ
+
         /// <summary>
-        /// 唯一のコンストラクタです。
+        /// 既定のコンストラクタです。
         /// </summary>
         /// <param name="owner">親フォーム</param>
         public ProgressDialog(Form owner)
@@ -110,6 +110,26 @@ namespace SO.Library.Forms
             Location = new Point(Owner.Location.X + (Owner.Width - this.Width) / 2,
                     Owner.Location.Y + (Owner.Height - this.Height) / 2);
         }
+
+        /// <summary>
+        /// プログレスバースタイル指定有りのコンストラクタです。
+        /// </summary>
+        /// <param name="owner">親フォーム</param>
+        /// <param name="style">プログレスバースタイル</param>
+        public ProgressDialog(Form owner, ProgressBarStyle style)
+        {
+            // コンポーネント初期化
+            InitializeComponent();
+
+            // ダイアログ表示位置設定
+            Owner = owner;
+            Location = new Point(Owner.Location.X + (Owner.Width - this.Width) / 2,
+                    Owner.Location.Y + (Owner.Height - this.Height) / 2);
+
+            // プログレスバースタイルを設定
+            barProgress.Style = style;
+        }
+
         #endregion
 
         #region InitializeProgressbar - プログレスバー初期化

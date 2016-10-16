@@ -3,7 +3,6 @@ using System.Reflection;
 
 using SO.Library.Forms;
 using SO.Library.IO;
-using SO.Library.Text;
 
 using Config = System.Configuration.ConfigurationManager;
 

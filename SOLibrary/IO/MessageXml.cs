@@ -3,7 +3,6 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using System.Xml;
 using System.Xml.Linq;
 
 namespace SO.Library.IO
