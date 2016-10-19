@@ -27,7 +27,7 @@ namespace SO.Library.Forms
         /// <param name="messageId">メッセージID</param>
         /// <param name="args">置換パラメータ</param>
         /// <returns>応答結果</returns>
-        public static DialogResult ShowMessage(string messageId, params string[] args)
+        public static DialogResult ShowMessage(string messageId, params object[] args)
         {
             MessageInfo info = MessageXml.GetMessageInfo(messageId, args);
 

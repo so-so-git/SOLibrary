@@ -70,7 +70,7 @@ namespace SO.Library.IO
         /// <param name="messageId">メッセージID</param>
         /// <param name="args">置換文字列</param>
         /// <returns>アプリケーションメッセージ情報</returns>
-        public static MessageInfo GetMessageInfo(string messageId, params string[] args)
+        public static MessageInfo GetMessageInfo(string messageId, params object[] args)
         {
             if (string.IsNullOrEmpty(MessageFilePath))
             {
